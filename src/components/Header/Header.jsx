@@ -25,13 +25,7 @@ const Header = () => {
         <AppBar color="inherit" style={{position: "static", width: "98.9vw"}} id="header">
             <Toolbar style={{display: "flex", justifyContent: "space-between"}}>
                 <div>
-                    <a href="#">
-                        <img
-                            src=""
-                            alt=""
-                            style={{ width: "auto", height: 40 }}
-                        />
-                    </a>
+                <img src="/images/Logo.png" alt="logo" style={{width: "6rem", height: "5rem"}} />
                 </div>
 
                 <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
