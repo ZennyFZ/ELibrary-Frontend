@@ -1,0 +1,11 @@
+.book-intro {
+    background-image: url('https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?cs=srgb&dl=pexels-pixabay-159711.jpg&fm=jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.ChooseBook:hover {
+    transition: 0.5s;
+    opacity: 0.5;
+}
