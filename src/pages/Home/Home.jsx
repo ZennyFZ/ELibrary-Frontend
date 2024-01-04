@@ -1,9 +1,13 @@
+import HomeBody from "./HomeBody/HomeBody";
+import HomeIntro from "./HomeIntro";
+
 const Home = () => {
     return (
         <div>
-            <h1>Home</h1>
+            <HomeIntro />
+            <HomeBody />
         </div>
-    )
-}
+    );
+};
 
-export default Home
+export default Home;
