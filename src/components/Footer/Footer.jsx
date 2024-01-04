@@ -22,6 +22,7 @@ const Footer = () => {
         borderTop: '1px solid',
         borderColor: 'divider',
       }}
+      id="footer"
     >
       <Container>
         <Grid container spacing={2} justifyContent="space-between">
