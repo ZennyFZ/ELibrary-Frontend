@@ -10,7 +10,7 @@ function App() {
     <>
       <BrowserRouter>
         <Header />
-        <div style={{height: "100vh"}}><Router /></div>
+        <Router />
         <Footer />
       </BrowserRouter>
     </>
