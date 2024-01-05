@@ -12,6 +12,10 @@ const Header = () => {
             link: "/",
         },
         {
+            section: "Premium",
+            link: "/"
+        },
+        {
             section: "Contact",
             link: "/",
         },
