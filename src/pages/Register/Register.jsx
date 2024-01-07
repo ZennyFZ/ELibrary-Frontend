@@ -1,13 +1,27 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './Register.module.css'
 import Container from '@mui/material/Container';
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Box, Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField, Typography } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Link } from 'react-router-dom';
-
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 const Register = () => {
+    //usestste
+    const [formError , setFormError] = useState({
+        email:"",
+        password:"",
+        cfpassword:""
+    });
 
+    //show or hide password
+    const [showPassword, setShowPassword] = useState(false);
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
+
+    //page
     const isRegisterPage = () => {
         if (window.location.pathname === "/register") {
             document.getElementById("header").style.display = "none"
@@ -16,10 +30,31 @@ const Register = () => {
         }
         return false
     }
-
+    
+    //submit
+    let inputError = {
+        email:"",
+        password:"",
+        cfpassword:""
+    }
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(`email: ${e.target.email.value}, password: ${e.target.password.value}`)
+        console.log(`email: ${e.target.email.value}, password: ${e.target.password.value}, cfpassword: ${e.target.cfpassword.value}`)
+        //input error
+        if(e.target.cfpassword.value  !== e.target.password.value){
+            setFormError({
+                ...inputError,
+                cfpassword:"password và confirm password phải giống nhau"
+            });
+            return;
+        }
+        if(e.target.cfpassword.value == e.target.password.value){
+            setFormError({
+                ...inputError,
+                cfpassword:""
+            });
+            return;
+        }
     }
 
     useEffect(() => {
@@ -48,14 +83,80 @@ const Register = () => {
                             <Typography component="h1" variant="h5">
                                 Welcome to E-Library
                             </Typography>
-                            <Box component="form" onSubmit={handleSubmit} style={{ marginTop: "1rem", textAlign: "center" }}>
+                         
+                            <Box component="form" onSubmit={handleSubmit} style={{ marginTop: "1rem", textAlign: "center",minWidth: "350px" }}>
                                 <div className={styles.loginForm__loginBox__inputBox}>
-                                    <TextField required label="Email Address" name="email" type='email' autoFocus />
-                                    <TextField required label="Password" name="password" type="password" />
-                                    <TextField required label="Confirm Password" name="password" type="password" />
+                                    {/* Email */}
+                                    <TextField 
+                                    fullWidth
+                                    required 
+                                    label="Email Address" 
+                                    name="email" 
+                                    type='email' 
+                                    autoFocus
+                                    />
+                                    <p className={styles.error_message}>{formError.email}</p>
+                                    
+                                    {/* Password */}
+                                    <FormControl variant="outlined" fullWidth required>
+                                        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                                        <OutlinedInput 
+                                            required
+                                            id="outlined-adornment-password"
+                                            name="password"
+                                            type={showPassword ? 'text' : 'password'}
+                                            fullWidth
+                                            style={{ marginBottom: "5px" }}
+                                            endAdornment={
+                                                <InputAdornment position="end">
+                                                    <IconButton
+                                                        aria-label="toggle password visibility"
+                                                        onClick={handleClickShowPassword}
+                                                        onMouseDown={handleMouseDownPassword}
+                                                        edge="end"
+                                                    >
+                                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                                    </IconButton>
+                                                </InputAdornment>
+                                            }
+                                            label="Password"
+                                        />
+
+                                    {/* Confirm Password */}    
+                                    </FormControl>
+                                    <p className={styles.error_message}>{formError.password}</p>
+                                    <FormControl variant="outlined" fullWidth required>
+                                        <InputLabel htmlFor="outlined-adornment-password">Confirm Password</InputLabel>
+                                        <OutlinedInput 
+                                            required
+                                            id="outlined-adornment-password"
+                                            name="cfpassword"
+                                            type={showPassword ? 'text' : 'password'}
+                                            fullWidth
+                                            style={{ marginBottom: "5px" }}
+                                            endAdornment={
+                                                <InputAdornment position="end">
+                                                    <IconButton
+                                                        aria-label="toggle password visibility"
+                                                        onClick={handleClickShowPassword}
+                                                        onMouseDown={handleMouseDownPassword}
+                                                        edge="end"
+                                                    >
+                                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                                    </IconButton>
+                                                </InputAdornment>
+                                            }
+                                            label="Confirm Password"
+                                        />
+                                    </FormControl>
+                                    <p className={styles.error_message}>{formError.cfpassword}</p>
                                 </div>
+
+                                
                                 <Button type="submit" variant="contained" className={styles.loginForm__loginBox__button}> Sign Up </Button>
                             </Box>
+
+
                             <div>
                                 <Divider style={{marginTop: "1rem"}} />
                                 <div className={styles.loginForm__loginBox__footer}>
