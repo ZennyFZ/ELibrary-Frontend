@@ -1,5 +1,6 @@
 import HeaderAbout from "../components/Header/HeaderList/HeaderAbout";
 import HeaderContact from "../components/Header/HeaderList/HeaderContact";
+import BookItem from "../pages/Home/BookItem/BookItem";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
@@ -35,6 +36,11 @@ const RouteData = [
         title: "About",
         path: "/about",
         element: <HeaderAbout />,
+    },
+    {
+        title: "Book",
+        path: "/book",
+        element: <BookItem />,
     },
 ];
 
