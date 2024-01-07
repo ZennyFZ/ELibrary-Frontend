@@ -20,9 +20,9 @@ const RouteData = [
         element: <Register />,
     },
     {
-    title: "User Page",
-    path: "/user",
-    element: <UserPage />,
+        title: "User Page",
+        path: "/user",
+        element: <UserPage />,
     },
 ]
 
