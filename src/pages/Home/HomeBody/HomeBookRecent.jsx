@@ -1,5 +1,7 @@
 import React from "react";
+import { Button } from "@mui/material";
 import "../Home.scss";
+import { Link } from "react-router-dom";
 function HomeBookRecent() {
     const bookData = [
         {
@@ -77,12 +79,15 @@ function HomeBookRecent() {
                                 <h3 style={{ borderTop: "1px solid #d5c6c6" }}>{book.name}</h3>
                                 <p className="abc">{book.script}</p>
                                 <div>
-                                    <button className="ChooseBook" style={{ backgroundColor: "#ba2c39", color: "white" }}>
+                                    <Button className="ChooseBook" style={{ backgroundColor: "#ba2c39", color: "white" }}>
                                         Add Cart
-                                    </button>
-                                    <button className="ChooseBook" style={{ backgroundColor: "#29943d", color: "white", marginLeft: "10px" }}>
-                                        View
-                                    </button>
+                                    </Button>
+                                    <Button className="ChooseBook" style={{ backgroundColor: "#29943d", marginLeft: "10px", padding: "7px 10px" }}>
+                                        {" "}
+                                        <Link to={"/book"} style={{ color: "white" }}>
+                                            View
+                                        </Link>
+                                    </Button>
                                 </div>
                             </div>
                         ))}

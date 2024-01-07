@@ -28,9 +28,10 @@ const Footer = () => {
         <Grid container spacing={2} justifyContent="space-between">
           <Grid item xs={12} sm={6} md={3}>
             <Typography variant="h6" color="text.primary" style={{fontWeight: "bold"}} gutterBottom>
-              ELibrary
+              E-Library
             </Typography>
-            {/* //image here */}
+            <div>The dissemination and sharing of knowledge, as well as truth, is imperative - <span style={{fontWeight: "bolder"}}>Dr. Ratio</span></div>
+            <img src="/images/Logo.png" alt="logo" style={{width: "6rem", height: "5rem", marginTop: "1rem"}} />
           </Grid>
           <Grid item xs={6} sm={3} md={2}>
             <Typography variant="h6" color="text.primary" style={{fontWeight: "bold"}} gutterBottom>

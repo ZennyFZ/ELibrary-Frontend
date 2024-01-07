@@ -1,0 +1,38 @@
+.title {
+    height: 150px;
+    background-image: url("https://www.thetimes.co.uk/imageserver/image/%2Fmethode%2Ftimes%2Fprod%2Fweb%2Fbin%2F4fc31a0e-4ebf-11ec-9bc6-5abf98655bc4.jpg?crop=1500%2C1000%2C0%2C0");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.Book-body {
+    border-radius: 5px;
+    border: 1px solid rgb(193, 185, 185);
+    display: flex;
+    margin: 30px 200px 0 200px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    .half-width {
+        width: 50%;
+        padding: 40px;
+    }
+
+    button {
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        background-color: #e2be12;
+        padding: 15px 25px;
+    }
+
+    button:hover {
+        border: black;
+        padding: 20px 30px;
+        opacity: 0.5;
+        transition: 1s;
+    }
+}
