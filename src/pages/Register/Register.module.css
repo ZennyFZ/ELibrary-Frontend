@@ -56,8 +56,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 8rem;
-    margin-bottom: 8rem;
+    /* margin-top: 8rem;
+    margin-bottom: 8rem; */
 }
 
 .loginForm__loginBox__inputBox {
@@ -75,4 +75,10 @@
     border-radius: 5rem !important;
     background-color: #1e90ff !important;
     font-weight: bold !important;;
+}
+
+.error_message{
+    font-size: 12px;
+    font-weight: 500;
+    color: red;
 }
