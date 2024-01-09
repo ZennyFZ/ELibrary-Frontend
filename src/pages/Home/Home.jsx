@@ -1,4 +1,5 @@
 import HomeBody from "./HomeBody/HomeBody";
+import HomeFooter from "./HomeBody/HomeFooter";
 import HomeIntro from "./HomeIntro";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
         <div>
             <HomeIntro />
             <HomeBody />
+            {/* <HomeFooter /> */}
         </div>
     );
 };
