@@ -1,7 +1,9 @@
 import React from "react";
 import "./BookItem.scss";
-
+import { useParams } from "react-router-dom";
 function BookItem() {
+    const { id } = useParams();
+    console.log(id);
     return (
         <div style={{ backgroundColor: "rgb(244 244 244)", paddingBottom: "20px" }}>
             <div className="title"></div>
