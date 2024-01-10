@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import styles from './Login.module.css'
 import Container from '@mui/material/Container';
-
+import { toast } from "react-toastify";
 import {
     Box,
     Button,
@@ -19,6 +19,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Link } from 'react-router-dom';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
+import { login } from '../../apis/UserService';
 const Login = () => {
     //show or hide password
     const [showPassword, setShowPassword] = useState(false);
@@ -40,12 +41,33 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(`email: ${e.target.email.value}, password: ${e.target.password.value}`)
+        login(e.target.email.value, e.target.password.value).then(res => {
+            if(res.status === 200) {
+                toast.success("login successfully");
+                console.log(res)
+                // localStorage.setItem('user', JSON.stringify(res.data.data.user))
+                // if(res.data.data.user.role === 'admin' || res.data.data.user.role === 'member') {
+                //     localStorage.setItem('isAdmin', 'true')
+                // }else {
+                //     localStorage.setItem('isAdmin', 'false')
+                // }
+                window.location.href = '/'
+            }
+        }).catch(err => {
+            console.log(err)
+            toast.error("login fail");
+        })
     }
 
     useEffect(() => {
         isLoginPage()
     }, [])
 
+    useEffect(() => {
+        if(localStorage.getItem('token')?.length > 0) {
+            window.location.href = '/'
+        }
+    }, [])
 
     return (
         <div className={styles.login}>

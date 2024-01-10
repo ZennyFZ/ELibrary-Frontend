@@ -12,10 +12,6 @@ const Header = () => {
             link: "/",
         },
         {
-            section: "Premium",
-            link: "/",
-        },
-        {
             section: "About",
             link: "/about",
         },
