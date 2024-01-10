@@ -39,7 +39,7 @@ const RouteData = [
     },
     {
         title: "Book",
-        path: "/book",
+        path: "/book/:id",
         element: <BookItem />,
     },
 ];

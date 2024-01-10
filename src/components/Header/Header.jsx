@@ -13,11 +13,7 @@ const Header = () => {
         },
         {
             section: "Premium",
-            link: "/"
-        },
-        {
-            section: "Contact",
-            link: "/contact",
+            link: "/",
         },
         {
             section: "About",
@@ -29,7 +25,7 @@ const Header = () => {
         <AppBar color="inherit" style={{ position: "static", width: "98.9vw" }} id="header">
             <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
                 <div>
-                <img src="/images/Logo.png" alt="logo" style={{width: "6rem", height: "5rem"}} />
+                    <img src="/images/Logo.png" alt="logo" style={{ width: "6rem", height: "5rem" }} />
                 </div>
 
                 <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
