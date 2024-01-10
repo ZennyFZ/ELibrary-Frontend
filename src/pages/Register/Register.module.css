@@ -18,6 +18,7 @@
     grid-template-columns: 1fr 1fr;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
+    overflow: hidden;
 }
 
 .loginForm__left {

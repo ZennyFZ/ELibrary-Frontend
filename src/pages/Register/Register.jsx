@@ -44,7 +44,7 @@ const Register = () => {
         if(e.target.cfpassword.value  !== e.target.password.value){
             setFormError({
                 ...inputError,
-                cfpassword:"password và confirm password phải giống nhau"
+                cfpassword:"password and confirm password must be the same"
             });
             return;
         }
