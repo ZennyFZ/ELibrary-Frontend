@@ -44,7 +44,8 @@ const Login = () => {
         login(e.target.email.value, e.target.password.value).then(res => {
             if(res.status === 200) {
                 toast.success("login successfully");
-                localStorage.setItem('user', JSON.stringify(res.data.data.user))
+                console.log(res)
+                // localStorage.setItem('user', JSON.stringify(res.data.data.user))
                 // if(res.data.data.user.role === 'admin' || res.data.data.user.role === 'member') {
                 //     localStorage.setItem('isAdmin', 'true')
                 // }else {
