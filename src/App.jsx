@@ -1,34 +1,24 @@
-import { BrowserRouter } from 'react-router-dom'
-import './App.css'
+import React from "react";
 import "react-toastify/dist/ReactToastify.css"
 import { ToastContainer } from 'react-toastify';
-import Header from './components/Header/Header'
-import Router from './routes/Router'
-import Footer from './components/Footer/Footer'
+import { RouterProvider } from "react-router-dom";
+import Router from "./routes/Router";
 
-function App() {
-
-  return (
+export default function App() {
+    return
     <>
-      <BrowserRouter>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-        <Header />
-        <Router />
-        <Footer />
-      </BrowserRouter>
-    </>
-  )
+        <ToastContainer
+            position="bottom-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+        />
+        <RouterProvider router={Router} />
+    </>;
 }
-
-export default App
