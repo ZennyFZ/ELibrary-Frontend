@@ -8,6 +8,7 @@ import { useState } from "react";
 import OrderPage from "./OrderPage";
 import BookCollection from "./BookCollection";
 import UserProfile from "./UserProfile";
+import { autoBatchEnhancer } from "@reduxjs/toolkit";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -55,7 +56,8 @@ export default function UserPage() {
         flexGrow: 1,
         bgcolor: "background.paper",
         display: "flex",
-        height: 224,
+        height: "80%",
+        margin: "5%",
       }}
     >
       <Tabs

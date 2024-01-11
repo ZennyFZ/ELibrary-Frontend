@@ -8,11 +8,11 @@ const UserProfile = () => {
       <div className="user-profile" style={{ marginLeft: "30px" }}>
         <div className="profile-header">
           <img src="user-avatar.jpg" alt="User Avatar" className="avatar" />
-          <h2 className="username">Tài Smile</h2>
+          <h3 className="username">Tài Smile</h3>
         </div>
         <div className="profile-details">
           <div className="detail">
-            <h2>Phone</h2>
+            <h3>Phone</h3>
             <p>0901425613</p>
           </div>
           <div className="detail">
