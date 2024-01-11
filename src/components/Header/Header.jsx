@@ -1,6 +1,8 @@
-import { AppBar, Toolbar, Button } from "@mui/material";
+import { AppBar, Toolbar, Button} from "@mui/material";
 import { Link } from "react-router-dom";
-
+import { getCurrentUser } from "../../apis/UserService";
+import { useState } from "react";
+import { useEffect } from "react";
 const Header = () => {
     const headerSection = [
         {
@@ -16,6 +18,22 @@ const Header = () => {
             link: "/about",
         },
     ];
+
+
+    //get user data for profile, icon, history, . . .
+    const [user, setUser] = useState(null);
+    function getUserData() {
+        getCurrentUser().then(res => {
+          setUser(res.data);
+          console.log(res.data)
+        }).catch(err => {
+          console.log(err);
+        })
+      }
+
+      useEffect(()=>{
+        getUserData()
+    },[])
 
     return (
         <AppBar color="inherit" style={{ position: "static", width: "98.9vw" }} id="header">
