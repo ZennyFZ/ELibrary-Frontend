@@ -20,6 +20,7 @@ import { Link } from 'react-router-dom';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 import { login } from '../../apis/UserService';
+
 const Login = () => {
     //show or hide password
     const [showPassword, setShowPassword] = useState(false);
@@ -43,21 +44,23 @@ const Login = () => {
         console.log(`email: ${e.target.email.value}, password: ${e.target.password.value}`)
         login(e.target.email.value, e.target.password.value).then(res => {
             if(res.status === 200) {
-                toast.success("login successfully");
-                console.log(res)
-                // localStorage.setItem('user', JSON.stringify(res.data.data.user))
+                toast.success("đăng nhập thành công")
+                console.log(res.data)
+                // localStorage.setItem('user', JSON.stringify(res.data.data))
                 // if(res.data.data.user.role === 'admin' || res.data.data.user.role === 'member') {
                 //     localStorage.setItem('isAdmin', 'true')
                 // }else {
                 //     localStorage.setItem('isAdmin', 'false')
                 // }
-                window.location.href = '/'
+                // window.location.href = '/'
+                
             }
         }).catch(err => {
             console.log(err)
-            toast.error("login fail");
+            toast.error("đăng nhập thất bại");
         })
     }
+
 
     useEffect(() => {
         isLoginPage()
@@ -82,7 +85,7 @@ const Login = () => {
                             <a href="/">
                                 <div className={styles.loginForm__goToHome}>
                                     <ArrowBackIcon />
-                                    <Typography component="h1" variant="h6" style={{ marginLeft: "0.5rem" }}>Go to Home</Typography>
+                                    <Typography component="h1" variant="h6" style={{ marginLeft: "0.5rem" }}>Trở về trang Home </Typography>
                                 </div>
                             </a>
                         </div>
@@ -90,14 +93,14 @@ const Login = () => {
                             <img src='./images/Logo.png' alt="Logo" className={styles.loginForm__logo} />
 
                             <Typography component="h1" variant="h5">
-                                Welcome to E-Library
+                                Chào mừng tới E-Library
                             </Typography>
 
                             <Box component="form" onSubmit={handleSubmit} style={{ marginTop: "1rem", textAlign: "center", maxWidth: "350px" }}>
                                 <div >
                                     <TextField
                                         required
-                                        label="Email Address"
+                                        label="Tài khoản Email"
                                         name="email"
                                         type='email'
                                         autoFocus
@@ -124,7 +127,7 @@ const Login = () => {
                                                     </IconButton>
                                                 </InputAdornment>
                                             }
-                                            label="Password"
+                                            label="Mật khẩu"
                                         />
                                     </FormControl>
 
@@ -134,7 +137,7 @@ const Login = () => {
                                     type="submit"
                                     variant="contained"
                                     className={styles.loginForm__loginBox__button}
-                                > Sign In
+                                > Đăng nhập
                                 </Button>
 
                             </Box>
@@ -142,7 +145,7 @@ const Login = () => {
                                 <Divider style={{ marginTop: "1rem" }} />
                                 <div className={styles.loginForm__loginBox__footer}>
                                     <Typography component="h1" variant="h6" style={{ marginTop: "1rem" }}>
-                                        Don't have an account? <Link to="/register" style={{ color: "#3f51b5", fontWeight: "bold" }}>Sign Up</Link>
+                                        Chưa có tài khoản ? <Link to="/register" style={{ color: "#3f51b5", fontWeight: "bold" }}>Đăng ký</Link>
                                     </Typography>
                                 </div>
                             </div>
