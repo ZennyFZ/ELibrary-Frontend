@@ -1,28 +1,92 @@
 import React from "react";
 import TableContainer from "@mui/material/TableContainer";
 import Paper from "@mui/material/Paper";
-const BookCollection = () => {
-  const books = [
-    { id: 1, title: "Book 1", author: "Author 1" },
-    { id: 2, title: "Book 2", author: "Author 2" },
-    { id: 3, title: "Book 3", author: "Author 3" },
-  ];
+import { useEffect, useState } from "react";
+import { getBooks } from "../../apis/BookService";
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
+
+function BookCollection() {
+  const [books, setBooks] = useState([]);
+  const getAllBooks = () => {
+    getBooks().then((res) => {
+      setBooks(res.data);
+    });
+  };
+  useEffect(() => {
+    getBooks().then((res) => {
+      setBooks(res.data.bookList);
+    });
+  }, []);
+  const chunkArray = (array, size) => {
+    const chunkedArray = [];
+    for (let i = 0; i < array.length; i += size) {
+      chunkedArray.push(array.slice(i, i + size));
+    }
+    return chunkedArray;
+  };
+  const chunkedBooks = chunkArray(books, 3);
 
   return (
     <TableContainer component={Paper} style={{ width: 1000, paddingLeft: 30 }}>
       <div>
         <h1>My Book Collection</h1>
-        <ul>
-          {books.map((book) => (
-            <li key={book.id}>
-              <h3>{book.title}</h3>
-              <p>By {book.author}</p>
-            </li>
+        <div>
+          {chunkedBooks.map((row, rowIndex) => (
+            <div
+              key={rowIndex}
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                marginLeft: "115px",
+              }}
+            >
+              {row.map((book, index) => (
+                <div
+                  key={index}
+                  style={{
+                    height: "350px",
+                    width: "230px",
+                    textAlign: "center",
+                    padding: "15px",
+                    marginBottom: "50px",
+                    backgroundColor: "rgb(248 246 246)",
+                    marginRight: "100px",
+                  }}
+                >
+                  <img
+                    src={book.image}
+                    alt=""
+                    style={{ width: "200px", height: "200px" }}
+                  />
+                  <h3
+                    style={{ borderTop: "1px solid #d5c6c6", height: "70px" }}
+                  >
+                    {book.title}
+                  </h3>
+                  <div>
+                    <Button
+                      className="ChooseBook"
+                      style={{
+                        backgroundColor: "#29943d",
+                        marginLeft: "10px",
+                        padding: "7px 10px",
+                      }}
+                    >
+                      {" "}
+                      <Link to={"/book/${book._id}"} style={{ color: "white" }}>
+                        View
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </TableContainer>
   );
-};
+}
 
 export default BookCollection;
