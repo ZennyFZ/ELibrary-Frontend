@@ -1,11 +1,75 @@
-import RouteData from "./RouteData"
-import { Route, Routes } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
+import HeaderAbout from "../components/Header/HeaderList/HeaderAbout";
+import HeaderContact from "../components/Header/HeaderList/HeaderContact";
+import BookItem from "../pages/Home/BookItem/BookItem";
+import Home from "../pages/Home/Home";
+import Login from "../pages/Login/Login";
+import Register from "../pages/Register/Register";
+import UserPage from "../pages/UserPage/UserPage";
+import UserLayout from "../layout/UserLayout";
+import AdminLayout from "../layout/AdminLayout";
+import Error from "../pages/error/Error";
+import ManageCategory from "../pages/Admin/ManageCategory/ManageCategory";
+import ManageBook from "../pages/Admin/ManageBook/ManageBook";
 
-const Router = () => {
-    const pageRouter = RouteData.map((router, index) => {
-        return <Route key={index} title={router.title} path={router.path} element={router.element} />
-    })
-    return <Routes>{pageRouter}</Routes>
-}
-
-export default Router
+export default createBrowserRouter([
+  {
+    path: "/",
+    element: <UserLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        title: "Home",
+        path: "/",
+        element: <Home />,
+      },
+      {
+        title: "Login",
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        title: "Register",
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        title: "User Page",
+        path: "/user",
+        element: <UserPage />,
+      },
+      {
+        title: "Contact",
+        path: "/contact",
+        element: <HeaderContact />,
+      },
+      {
+        title: "About",
+        path: "/about",
+        element: <HeaderAbout />,
+      },
+      {
+        title: "Book",
+        path: "/book/:id",
+        element: <BookItem />,
+      },
+    ],
+  },
+  {
+    path: "/admin",
+    element: <AdminLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        title: "ManageBook",
+        path: "/admin/manageBook",
+        element: <ManageBook />,
+      },
+      {
+        title: "ManageCategory",
+        path: "/admin/manageCategory",
+        element: <ManageCategory />,
+      },
+    ],
+  },
+]);

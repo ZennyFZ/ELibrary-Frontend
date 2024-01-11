@@ -1,20 +1,7 @@
-import { BrowserRouter } from 'react-router-dom'
-import './App.css'
-import Header from './components/Header/Header'
-import Router from './routes/Router'
-import Footer from './components/Footer/Footer'
+import React from "react";
+import { RouterProvider } from "react-router-dom";
+import Router from "./routes/Router";
 
-function App() {
-
-  return (
-    <>
-      <BrowserRouter>
-        <Header />
-        <Router />
-        <Footer />
-      </BrowserRouter>
-    </>
-  )
+export default function App() {
+  return <RouterProvider router={Router} />;
 }
-
-export default App
