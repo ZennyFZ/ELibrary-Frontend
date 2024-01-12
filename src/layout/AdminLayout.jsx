@@ -20,6 +20,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import MenuIcon from "@mui/icons-material/Menu";
 import CategoryIcon from "@mui/icons-material/Category";
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";
+
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -104,7 +105,7 @@ export default function MiniDrawer() {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", background: "#ababab47", minHeight: "100vh" }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
@@ -193,7 +194,9 @@ export default function MiniDrawer() {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Outlet />
+        <div style={{ background: "white", borderRadius: "12px" }}>
+          <Outlet />
+        </div>
       </Box>
     </Box>
   );
