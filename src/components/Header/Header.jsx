@@ -32,7 +32,7 @@ const Header = () => {
       }
 
       useEffect(()=>{
-        getUserData()
+        // getUserData()
     },[])
 
     return (

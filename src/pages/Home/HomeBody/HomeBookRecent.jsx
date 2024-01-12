@@ -51,7 +51,7 @@ function HomeBookRecent() {
                                     </Button>
                                     <Button className="ChooseBook" style={{ backgroundColor: "#29943d", marginLeft: "10px", padding: "7px 10px" }}>
                                         {" "}
-                                        <Link to={"/book/${id}"} style={{ color: "white" }}>
+                                        <Link to={`/book/${book._id}`} style={{ color: "white" }}>
                                             View
                                         </Link>
                                     </Button>
