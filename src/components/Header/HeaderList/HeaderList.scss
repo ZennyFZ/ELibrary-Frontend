@@ -53,6 +53,12 @@
     padding: 10px;
     box-shadow: 3px 3px #2e6398;
     font-size: 20px;
+    h2 {
+        padding: 10px;
+        color: white;
+        border-radius: 5px;
+        background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 15, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+    }
 }
 
 .header-about {
@@ -68,9 +74,3 @@
     letter-spacing: 4px;
 }
 
-h2 {
-    padding: 10px;
-    color: white;
-    border-radius: 5px;
-    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 15, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
-}
