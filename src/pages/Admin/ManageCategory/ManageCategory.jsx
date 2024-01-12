@@ -105,7 +105,7 @@ export default function ManageCategory() {
   return (
     <div>
       <h3 style={{ background: "#ababab", borderRadius: "12px 12px 0 0", textAlign: "center", padding: "12px" }}>Manage Category</h3>
-      <div style={{ width: "90vw", padding: "20px 10px 40px 10px", margin: "auto" }}>
+      <div style={{ width: "80vw", padding: "20px 10px 40px 10px", margin: "auto" }}>
         <div style={{ textAlign: "left" }}>
           <Button
             onClick={() => {
