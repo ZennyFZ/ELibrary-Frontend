@@ -2,7 +2,7 @@ import React from "react";
 import "./HeaderList.scss";
 function HeaderAbout() {
     return (
-        <div>
+        <div style={{ backgroundColor: "#EFE1E1" }}>
             <div className="header-about">
                 <p style={{ marginBottom: "165px" }}>ABOUT US</p>
             </div>
