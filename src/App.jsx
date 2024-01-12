@@ -5,20 +5,21 @@ import { RouterProvider } from "react-router-dom";
 import Router from "./routes/Router";
 
 export default function App() {
-    return
+  return (
     <>
-        <ToastContainer
-            position="bottom-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-        />
-        <RouterProvider router={Router} />
-    </>;
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      <RouterProvider router={Router} />
+    </>
+  );
 }

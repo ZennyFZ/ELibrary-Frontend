@@ -13,13 +13,14 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import LogoutIcon from "@mui/icons-material/Logout";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import MenuIcon from "@mui/icons-material/Menu";
 import CategoryIcon from "@mui/icons-material/Category";
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";
+
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -94,7 +95,8 @@ export default function MiniDrawer() {
   const theme = useTheme();
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
-
+  const { pathname } = useLocation();
+  const lastURL = pathname.split("/").pop();
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -104,7 +106,7 @@ export default function MiniDrawer() {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", background: "#ababab47", minHeight: "100vh" }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
@@ -138,7 +140,7 @@ export default function MiniDrawer() {
                 navigate(item.url);
               }}
               disablePadding
-              sx={{ display: "block" }}
+              sx={{ display: "block", background: lastURL === item.url ? "#80808059" : "" }}
             >
               <ListItemButton
                 sx={{
@@ -193,7 +195,9 @@ export default function MiniDrawer() {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Outlet />
+        <div style={{ background: "white", borderRadius: "12px" }}>
+          <Outlet />
+        </div>
       </Box>
     </Box>
   );
