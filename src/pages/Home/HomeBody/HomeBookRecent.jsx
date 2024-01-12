@@ -5,11 +5,7 @@ import { Link } from "react-router-dom";
 import { getBooks } from "../../../apis/BookService";
 function HomeBookRecent() {
     const [books, setBooks] = useState([]);
-    const getAllBooks = () => {
-        getBooks().then((res) => {
-            setBooks(res.data);
-        });
-    };
+
     useEffect(() => {
         getBooks().then((res) => {
             setBooks(res.data.bookList);
@@ -55,7 +51,7 @@ function HomeBookRecent() {
                                     </Button>
                                     <Button className="ChooseBook" style={{ backgroundColor: "#29943d", marginLeft: "10px", padding: "7px 10px" }}>
                                         {" "}
-                                        <Link to={"/book/${book._id}"} style={{ color: "white" }}>
+                                        <Link to={"/book/${id}"} style={{ color: "white" }}>
                                             View
                                         </Link>
                                     </Button>

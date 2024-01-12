@@ -13,63 +13,63 @@ import ManageCategory from "../pages/Admin/ManageCategory/ManageCategory";
 import ManageBook from "../pages/Admin/ManageBook/ManageBook";
 
 export default createBrowserRouter([
-  {
-    path: "/",
-    element: <UserLayout />,
-    errorElement: <Error />,
-    children: [
-      {
-        title: "Home",
+    {
         path: "/",
-        element: <Home />,
-      },
-      {
-        title: "Login",
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        title: "Register",
-        path: "/register",
-        element: <Register />,
-      },
-      {
-        title: "User Page",
-        path: "/user",
-        element: <UserPage />,
-      },
-      {
-        title: "Contact",
-        path: "/contact",
-        element: <HeaderContact />,
-      },
-      {
-        title: "About",
-        path: "/about",
-        element: <HeaderAbout />,
-      },
-      {
-        title: "Book",
-        path: "/book/:id",
-        element: <BookItem />,
-      },
-    ],
-  },
-  {
-    path: "/admin",
-    element: <AdminLayout />,
-    errorElement: <Error />,
-    children: [
-      {
-        title: "ManageBook",
-        path: "/admin/manageBook",
-        element: <ManageBook />,
-      },
-      {
-        title: "ManageCategory",
-        path: "/admin/manageCategory",
-        element: <ManageCategory />,
-      },
-    ],
-  },
+        element: <UserLayout />,
+        errorElement: <Error />,
+        children: [
+            {
+                title: "Home",
+                path: "/",
+                element: <Home />,
+            },
+            {
+                title: "Login",
+                path: "/login",
+                element: <Login />,
+            },
+            {
+                title: "Register",
+                path: "/register",
+                element: <Register />,
+            },
+            {
+                title: "User Page",
+                path: "/user",
+                element: <UserPage />,
+            },
+            {
+                title: "Contact",
+                path: "/contact",
+                element: <HeaderContact />,
+            },
+            {
+                title: "About",
+                path: "/about",
+                element: <HeaderAbout />,
+            },
+            {
+                title: "Book",
+                path: "/book/:id",
+                element: <BookItem />,
+            },
+        ],
+    },
+    {
+        path: "/admin",
+        element: <AdminLayout />,
+        errorElement: <Error />,
+        children: [
+            {
+                title: "ManageBook",
+                path: "/admin/manageBook",
+                element: <ManageBook />,
+            },
+            {
+                title: "ManageCategory",
+                path: "/admin/manageCategory",
+                element: <ManageCategory />,
+            },
+        ],
+    },
 ]);
