@@ -13,7 +13,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import LogoutIcon from "@mui/icons-material/Logout";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -95,7 +95,8 @@ export default function MiniDrawer() {
   const theme = useTheme();
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
-
+  const { pathname } = useLocation();
+  const lastURL = pathname.split("/").pop();
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -139,7 +140,7 @@ export default function MiniDrawer() {
                 navigate(item.url);
               }}
               disablePadding
-              sx={{ display: "block" }}
+              sx={{ display: "block", background: lastURL === item.url ? "#80808059" : "" }}
             >
               <ListItemButton
                 sx={{
