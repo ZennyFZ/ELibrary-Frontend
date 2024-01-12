@@ -59,8 +59,8 @@ const filterBookByCategory = (category) => {
 }
 
 //suggest
-const suggestBookForUser = () => {
-    return axios.get(`${BOOK_API_URL}/suggest-book`, { withCredentials: true });
+const suggestBookForUser = (userId) => {
+    return axios.get(`${BOOK_API_URL}/suggest-book`, {id : userId}, { withCredentials: true });
 }
 
 export { getBooks, getBook, getCategories, addBook, uploadBookImage, updateBook, deleteBook, filterBookByCategory, suggestBookForUser }
