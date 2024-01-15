@@ -11,6 +11,7 @@ import AdminLayout from "../layout/AdminLayout";
 import Error from "../pages/Error/Error";
 import ManageCategory from "../pages/Admin/ManageCategory/ManageCategory";
 import ManageBook from "../pages/Admin/ManageBook/ManageBook";
+import Cart from "../pages/Cart/Cart";
 
 export default createBrowserRouter([
     {
@@ -53,7 +54,12 @@ export default createBrowserRouter([
                 path: "/book/:id",
                 element: <BookItem />,
             },
-        ],
+            {
+                title: "Cart",
+                path: "/cart",
+                element: <Cart />,
+            },
+        ],  
     },
     {
         path: "/admin",

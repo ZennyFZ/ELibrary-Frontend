@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import styles from './Register.module.css'
 import Container from '@mui/material/Container';
-import { Box, Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField, Typography } from '@mui/material';
+import { Avatar, Box, Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField, Typography } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Link } from 'react-router-dom';
@@ -79,7 +79,7 @@ const Register = () => {
                             </a>
                         </div>
                         <Box className={styles.loginForm__loginBox}>
-                            <img src='./images/Logo.png' alt="Logo" className={styles.loginForm__logo} />
+                            <Avatar src='./images/Logo.png' alt="Logo" className={styles.loginForm__logo}  sx={{ width: 100, height: 100 }} />
                             <Typography component="h1" variant="h5">
                                 Welcome to E-Library
                             </Typography>
@@ -90,7 +90,7 @@ const Register = () => {
                                     <TextField 
                                     fullWidth
                                     required 
-                                    label="Email Address" 
+                                    label="Tài khoản Email" 
                                     name="email" 
                                     type='email' 
                                     autoFocus
@@ -99,7 +99,7 @@ const Register = () => {
                                     
                                     {/* Password */}
                                     <FormControl variant="outlined" fullWidth required>
-                                        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                                        <InputLabel htmlFor="outlined-adornment-password">Mật khẩu</InputLabel>
                                         <OutlinedInput 
                                             required
                                             id="outlined-adornment-password"
@@ -126,7 +126,7 @@ const Register = () => {
                                     </FormControl>
                                     <p className={styles.error_message}>{formError.password}</p>
                                     <FormControl variant="outlined" fullWidth required>
-                                        <InputLabel htmlFor="outlined-adornment-password">Confirm Password</InputLabel>
+                                        <InputLabel htmlFor="outlined-adornment-password">Xác nhận mật khẩu</InputLabel>
                                         <OutlinedInput 
                                             required
                                             id="outlined-adornment-password"

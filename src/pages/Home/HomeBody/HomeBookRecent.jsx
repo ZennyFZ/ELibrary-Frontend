@@ -3,6 +3,9 @@ import { Button } from "@mui/material";
 import "../Home.scss";
 import { Link } from "react-router-dom";
 import { getBooks } from "../../../apis/BookService";
+import { addToCart } from "../../Cart/CartSlice";
+import { useDispatch } from 'react-redux'
+
 function HomeBookRecent() {
     const [books, setBooks] = useState([]);
 
@@ -23,6 +26,13 @@ function HomeBookRecent() {
 
     // Chia mảng thành các dòng có 3 phần tử
     const chunkedBooks = chunkArray(books, 4);
+
+    //Thêm vào giỏ hàng
+    
+    const dispatch = useDispatch();
+    const handleAddToCart = (book) => {
+        dispatch(addToCart(book))
+    }
 
     return (
         <div>
@@ -46,7 +56,7 @@ function HomeBookRecent() {
                                 <img src={book.image} alt="" style={{ width: "200px", height: "200px" }} />
                                 <h3 style={{ borderTop: "1px solid #d5c6c6", height: "70px" }}>{book.title}</h3>
                                 <div>
-                                    <Button className="ChooseBook" style={{ backgroundColor: "#ba2c39", color: "white" }}>
+                                    <Button className="ChooseBook" style={{ backgroundColor: "#ba2c39", color: "white" }} onClick={() => { handleAddToCart(book) }}>
                                         Add Cart
                                     </Button>
                                     <Button className="ChooseBook" style={{ backgroundColor: "#29943d", marginLeft: "10px", padding: "7px 10px" }}>
