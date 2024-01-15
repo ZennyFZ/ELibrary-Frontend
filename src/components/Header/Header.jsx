@@ -36,7 +36,7 @@ const Header = () => {
       }
 
       useEffect(()=>{
-        getUserData()
+        // getUserData()
     },[])
     //show profile
     const [anchorElUser, setAnchorElUser] = useState(null);
