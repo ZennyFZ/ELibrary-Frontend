@@ -12,14 +12,14 @@ const addCategory = (name) => {
 }
 
 const updateCategory = (id, name) => {
-    return axios.put(`${CATEGORY_API_URL}/update-category/`, {
+        return axios.put(`${CATEGORY_API_URL}/update-category/`, {
         id,
         name
     }, { withCredentials: true });
 }
 
 const deleteCategory = (id) => {
-    return axios.delete(`${CATEGORY_API_URL}/delete-category/${id}`, {id}, { withCredentials: true });
+    return axios.delete(`${CATEGORY_API_URL}/delete-category/${id}`, { withCredentials: true });
 }
 
 export { getCategories, addCategory, updateCategory, deleteCategory };

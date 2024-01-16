@@ -1,3 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn-yellow {
+    @apply bg-yellow text-white text-7 
+    md:text-16 md:font-bold md:p-[0px_48px] md:h-[72px] 
+    font-inter font-semibold border-yellow rounded-[15px] md:rounded-[32px];
+  }
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
