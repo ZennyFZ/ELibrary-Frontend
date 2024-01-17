@@ -8,11 +8,16 @@ import { getCurrentUser } from '../../apis/UserService';
 import * as React from "react";
 import { useNavigate } from 'react-router-dom';
 import styles from './Cart.module.css'
+import { clearCart } from './CartSlice';
 export default function Cart() {
     const cart = useSelector(state => state.cart);
     const navigate = useNavigate();
-    console.log(cart);
+    const dispatch = useDispatch();
 
+    //xóa giỏ hàng
+    const handleClearCart = () => {
+      dispatch(clearCart())
+  }
     //get user data for profile, icon, history, . . .
     const [user, setUser] = useState(null);
     function getUserData() {
@@ -27,6 +32,7 @@ export default function Cart() {
       useEffect(()=>{
         getUserData()
     },[])
+  
 
     function checkout(){
         if(user === null){
@@ -73,7 +79,8 @@ export default function Cart() {
                             })}
                         </div>
                         <div className={styles.cart_summary}>
-                            <div className={styles.cart_checkout}>
+                        <Button onClick={() => handleClearCart()}>Xóa Giỏ Hàng</Button>
+                            <div className={styles.cart_checkout}>          
                                 <Button onClick={() => checkout()}>Mua Hàng</Button>
                                 <div className={styles.continue_shopping}>
                                         <Link to="/">

@@ -36,7 +36,7 @@ const Header = () => {
       }
 
       useEffect(()=>{
-        // getUserData()
+        getUserData()
     },[])
     //show profile
     const [anchorElUser, setAnchorElUser] = useState(null);
@@ -64,7 +64,7 @@ const Header = () => {
             
             {user ? (
               <div>
-              <Tooltip title="Thông tin cá nhân" style={{ textDecoration: "none", color: "black", marginLeft: "5.5rem" }}>
+              <Tooltip title="Thông tin cá nhân" style={{ textDecoration: "none", color: "black", marginLeft: "2.5rem" }}>
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar src="/broken-image.jpg"/>
                 </IconButton>
@@ -84,7 +84,6 @@ const Header = () => {
                 }}
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
-                Pa
               >
                 <MenuItem onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">
@@ -122,7 +121,7 @@ const Header = () => {
               </Menu>
             </div>
             ) : (
-              <Link to="/login" style={{ textDecoration: "none" }}>
+              <Link to="/login" style={{ textDecoration: "none", marginLeft: "2.5rem" }}>
                 <Button>
                   <div className="NavItem">
                     Đăng Nhập

@@ -28,7 +28,6 @@ function HomeBookRecent() {
     const chunkedBooks = chunkArray(books, 4);
 
     //Thêm vào giỏ hàng
-    
     const dispatch = useDispatch();
     const handleAddToCart = (book) => {
         dispatch(addToCart(book))
