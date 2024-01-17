@@ -7,11 +7,11 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import UserPage from "../pages/UserPage/UserPage";
 import UserLayout from "../layout/UserLayout";
-import AdminLayout from "../layout/AdminLayout";
 import Error from "../pages/Error/Error";
 import ManageCategory from "../pages/Admin/ManageCategory/ManageCategory";
 import ManageBook from "../pages/Admin/ManageBook/ManageBook";
 import PDFViewer from "../pages/EBookViewer/PDFViewer";
+import { AdminLayout } from "../layout/AdminLayout";
 
 export default createBrowserRouter([
     {
