@@ -9,6 +9,10 @@ const register = (email, password) => {
     return axios.post(`${USER_API_URL}/register`, { email, password }, { withCredentials: true });
 }
 
+const logout = () => {
+    return axios.get(`${USER_API_URL}/logout`, { withCredentials: true });
+}
+
 const getCurrentUser = () => {
     return axios.get(`${USER_API_URL}/get-current-user`,{ withCredentials: true });
 }
@@ -25,4 +29,4 @@ const updateUserRole = (id, role) => {
     return axios.post(`${USER_API_URL}/update-user-role`, { id, role }, { withCredentials: true });
 }
 
-export { login, register, getCurrentUser, updateProfile, changePassword, updateUserRole }
+export { login, register, logout, getCurrentUser, updateProfile, changePassword, updateUserRole }
