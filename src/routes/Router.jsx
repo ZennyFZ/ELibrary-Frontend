@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 import HeaderAbout from "../components/Header/HeaderList/HeaderAbout";
 import HeaderContact from "../components/Header/HeaderList/HeaderContact";
 import BookItem from "../pages/Home/BookItem/BookItem";
@@ -13,6 +13,8 @@ import ManageBook from "../pages/Admin/ManageBook/ManageBook";
 import Cart from "../pages/Cart/Cart";
 import PDFViewer from "../pages/EBookViewer/PDFViewer";
 import { AdminLayout } from "../layout/AdminLayout";
+import isLogin from "../utils/isLogin";
+import isAdmin from "../utils/isAdmin";
 
 export default createBrowserRouter([
     {
@@ -37,8 +39,8 @@ export default createBrowserRouter([
             },
             {
                 title: "User Page",
-                path: "/user",
-                element: <UserPage />,
+                path: "/user/*",
+                element: await isLogin()? <UserPage /> : <Navigate to="/login" replace />,
             },
             //temp path for testing
             {
@@ -70,7 +72,7 @@ export default createBrowserRouter([
     },
     {
         path: "/admin",
-        element: <AdminLayout />,
+        element: await isAdmin()? <AdminLayout /> : <Navigate to="/login" replace />,
         errorElement: <Error />,
         children: [
             {

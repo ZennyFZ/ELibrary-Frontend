@@ -21,5 +21,8 @@ export default defineConfig({
   }),],
   define: {
     'process.env.VITE_ENVIROMENT': JSON.stringify(process.env.VITE_ENVIROMENT),
+  },
+  build: {
+    target: 'ES2022',
   }
 })

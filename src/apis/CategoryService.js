@@ -2,7 +2,7 @@ import axios from "axios";
 import { CATEGORY_API_URL } from "./APIConfig";
 
 const getCategories = () => {
-    return axios.get(`${CATEGORY_API_URL}/get-all-categories`);
+    return axios.get(`${CATEGORY_API_URL}/get-all-categories`, { withCredentials: true });
 }
 
 const addCategory = (name) => {
