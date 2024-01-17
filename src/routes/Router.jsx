@@ -11,6 +11,7 @@ import AdminLayout from "../layout/AdminLayout";
 import Error from "../pages/Error/Error";
 import ManageCategory from "../pages/Admin/ManageCategory/ManageCategory";
 import ManageBook from "../pages/Admin/ManageBook/ManageBook";
+import PDFViewer from "../pages/EBookViewer/PDFViewer";
 
 export default createBrowserRouter([
     {
@@ -37,6 +38,12 @@ export default createBrowserRouter([
                 title: "User Page",
                 path: "/user",
                 element: <UserPage />,
+            },
+            //temp path for testing
+            {
+                title: "PDF Viewer",
+                path: "/pdf",
+                element: <PDFViewer />,
             },
             {
                 title: "Contact",

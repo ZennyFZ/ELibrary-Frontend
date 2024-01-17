@@ -14,7 +14,7 @@ const getCategories = () => {
 }
 
 //CRUD (admin only)
-const addBook = (title, author, publisher, publishDate, pages, language, price, image, description, category) => {
+const addBook = (title, author, publisher, publishDate, pages, language, price, image, description, category, file) => {
     return axios.post(`${BOOK_API_URL}/add-book`, {
         title,
         author,
@@ -26,15 +26,20 @@ const addBook = (title, author, publisher, publishDate, pages, language, price, 
         image,
         description,
         isDeleted: false,
-        category
+        category,
+        file
     }, { withCredentials: true });
 }
 
-const uploadBookImage = () => {
-    console.log("coming soon");
+const uploadBookImage = (formData) => {
+    return axios.post(`${BOOK_API_URL}/upload-book-image`, formData, { headers: {'Content-Type': 'multipart/form-data'} ,withCredentials: true });
 }
 
-const updateBook = (id, title, author, publisher, publishDate, pages, language, price, image, description, category) => {
+const uploadBookFile = (formData) => {
+    return axios.post(`${BOOK_API_URL}/upload-book-file`, formData, { headers: {'Content-Type': 'multipart/form-data'} ,withCredentials: true });
+}
+
+const updateBook = (id, title, author, publisher, publishDate, pages, language, price, image, description, category, file) => {
     return axios.put(`${BOOK_API_URL}/update-book/${id}`, {
         title,
         author,
@@ -45,7 +50,8 @@ const updateBook = (id, title, author, publisher, publishDate, pages, language, 
         price,
         image,
         description,
-        category
+        category,
+        file
     }, { withCredentials: true });
 }
 
@@ -63,4 +69,4 @@ const suggestBookForUser = (userId) => {
     return axios.get(`${BOOK_API_URL}/suggest-book`, {id : userId}, { withCredentials: true });
 }
 
-export { getBooks, getBook, getCategories, addBook, uploadBookImage, updateBook, deleteBook, filterBookByCategory, suggestBookForUser }
+export { getBooks, getBook, getCategories, addBook, uploadBookImage, uploadBookFile , updateBook, deleteBook, filterBookByCategory, suggestBookForUser }
