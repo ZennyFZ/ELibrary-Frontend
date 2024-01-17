@@ -11,7 +11,8 @@ import {
     InputLabel,
     OutlinedInput,
     TextField,
-    Typography
+    Typography,
+    Avatar
 } from '@mui/material';
 import Divider from '@mui/material/Divider';
 
@@ -46,13 +47,7 @@ const Login = () => {
             if(res.status === 200) {
                 toast.success("đăng nhập thành công")
                 console.log(res.data)
-                // localStorage.setItem('user', JSON.stringify(res.data.data))
-                // if(res.data.data.user.role === 'admin' || res.data.data.user.role === 'member') {
-                //     localStorage.setItem('isAdmin', 'true')
-                // }else {
-                //     localStorage.setItem('isAdmin', 'false')
-                // }
-                // window.location.href = '/'
+                window.location.href = '/'
                 
             }
         }).catch(err => {
@@ -64,12 +59,6 @@ const Login = () => {
 
     useEffect(() => {
         isLoginPage()
-    }, [])
-
-    useEffect(() => {
-        if(localStorage.getItem('token')?.length > 0) {
-            window.location.href = '/'
-        }
     }, [])
 
     return (
@@ -90,7 +79,7 @@ const Login = () => {
                             </a>
                         </div>
                         <Box className={styles.loginForm__loginBox}>
-                            <img src='./images/Logo.png' alt="Logo" className={styles.loginForm__logo} />
+                            <Avatar src='./images/Logo.png' alt="Logo" className={styles.loginForm__logo}  sx={{ width: 100, height: 100 }} />
 
                             <Typography component="h1" variant="h5">
                                 Chào mừng tới E-Library
@@ -107,7 +96,7 @@ const Login = () => {
                                         fullWidth
                                         style={{ marginBottom: "15px" }} />
                                     <FormControl variant="outlined" fullWidth required>
-                                        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                                        <InputLabel htmlFor="outlined-adornment-password">Mật khẩu</InputLabel>
                                         <OutlinedInput
                                             required
                                             id="outlined-adornment-password"

@@ -2,25 +2,37 @@ import {useSelector, useDispatch} from 'react-redux';
 import { Link } from "react-router-dom"
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import Button from "@mui/material/Button";
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 import { toast } from "react-toastify";
 import { getCurrentUser } from '../../apis/UserService';
 import * as React from "react";
 import { useNavigate } from 'react-router-dom';
-
+import styles from './Cart.module.css'
+import { clearCart } from './CartSlice';
 export default function Cart() {
     const cart = useSelector(state => state.cart);
-    const [user, setUser] = React.useState(null);
     const navigate = useNavigate();
-    console.log(cart);
+    const dispatch = useDispatch();
 
-    function getCurUser() {
+    //xóa giỏ hàng
+    const handleClearCart = () => {
+      dispatch(clearCart())
+  }
+    //get user data for profile, icon, history, . . .
+    const [user, setUser] = useState(null);
+    function getUserData() {
         getCurrentUser().then(res => {
-          setUser(res.data);
+          setUser(res.data.user);
+          console.log(res.data.user)
         }).catch(err => {
           console.log(err);
         })
       }
+
+      useEffect(()=>{
+        getUserData()
+    },[])
+  
 
     function checkout(){
         if(user === null){
@@ -31,18 +43,14 @@ export default function Cart() {
         }
     }
 
-    useEffect(() => {
-        getCurUser();
-    }, [])
-
     return (
         <div>
-            <div className="cart-container">
-                <h2>Giỏ Hàng</h2>
-                { cart.cartItems.length === 0 ? (
-                    <div className="cart-empty">
+            <div className={styles.cart_container}>
+                <h2>Cart</h2>
+                { cart?.cartItems.length === 0 ? (
+                    <div className={styles.cart_empty}>
                         <p>Không có sản phẩm nào trong giỏ hàng của bạn.</p>
-                        <div className="start-shopping">
+                        <div className={styles.start_shopping}>
                             <Link to="/">
                                 <Button><KeyboardBackspaceIcon />Tiếp tục mua hàng</Button>
                             </Link>
@@ -50,30 +58,31 @@ export default function Cart() {
                     </div>
                 ): (
                     <div>
-                        <div className="titles">
-                            <h3 className="product-title">Sản Phẩm</h3>
-                            <h3 className="price">Giá</h3>
-                            <h3 className="Quantity">Số Lượng</h3>
-                            <h3 className="total">Thành Tiền</h3>
+                        <div className={styles.titles}>
+                            <h3 className={styles.product_title}>Sản Phẩm</h3>
+                            <h3 className={styles.price}>Giá</h3>
                         </div>
-                        <div className="cart-items">
+                        <div>
                             {cart.cartItems?.map(cartItem => {
                                 return (
-                                    <div className="cart-item" key={cartItem.productId}>
-                                        <div className="cart-product">
+                                    <div className={styles.cart_item} key={cartItem._id}>
+                                        <div className={styles.cart_product}>
                                             <img src={cartItem.image} alt={cartItem._id} />
                                             <div>
-                                                <h3>{cartItem._id}</h3>
+                                                <h3>{cartItem.title}</h3>
                                             </div>
                                         </div>
+                                        <div>{(cartItem.price)?.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</div>
                                     </div>
+                                    
                                 )
                             })}
                         </div>
-                        <div className="cart-summary">
-                            <div className="cart-checkout">
+                        <div className={styles.cart_summary}>
+                        <Button onClick={() => handleClearCart()}>Xóa Giỏ Hàng</Button>
+                            <div className={styles.cart_checkout}>          
                                 <Button onClick={() => checkout()}>Mua Hàng</Button>
-                                <div className="continue-shopping">
+                                <div className={styles.continue_shopping}>
                                         <Link to="/">
                                             <Button><KeyboardBackspaceIcon />Tiếp tục mua hàng</Button>
                                         </Link>
