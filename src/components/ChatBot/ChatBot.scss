@@ -2,10 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0');
 
-* {
-  box-sizing: border-box;
-}
-
 body.show-chatbot {
   .chatbot-toggler {
     transform: rotate(90deg);
@@ -48,6 +44,7 @@ body.show-chatbot {
   position: fixed;
   right: 35px;
   bottom: 90px;
+  height: 80%;
   width: 420px;
   background: #fff;
   border-radius: 15px;
@@ -84,6 +81,7 @@ body.show-chatbot {
   }
 
   &__chat-input {
+    box-sizing: border-box;
     display: flex;
     gap: 5px;
     position: absolute;
@@ -94,6 +92,7 @@ body.show-chatbot {
     border-top: 1px solid #ddd;
 
     textarea {
+      box-sizing: border-box;
       height: 55px;
       width: 100%;
       border: none;
@@ -109,7 +108,6 @@ body.show-chatbot {
     }
 
     span {
-      align-self: flex-end;
       color: #724ae8;
       cursor: pointer;
       height: 55px;
@@ -120,6 +118,7 @@ body.show-chatbot {
   }
 
   &__chatbox {
+    box-sizing: border-box;
     overflow-y: auto;
     height: 510px;
     padding: 30px 20px 100px;
