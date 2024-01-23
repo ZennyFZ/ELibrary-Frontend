@@ -51,8 +51,11 @@ export default function Cart() {
             toast.error("Bạn cần đăng nhập để thanh toán");
             navigate("/login");
         }else{
-            // window.open(`${makePayment(cart.cartTotalAmount,'Bank')}`);
-           console.log(makePayment(cart.cartTotalAmount,'Bank').data)
+           makePayment(cart.cartTotalAmount,'Bank').then(res => {
+            window.open(`${res.data.vnpUrl}`);
+          }).catch(err => {
+            console.log(err);
+          })
         }
     }
 
