@@ -8,7 +8,9 @@ import { getCurrentUser } from '../../apis/UserService';
 import * as React from "react";
 import { useNavigate } from 'react-router-dom';
 import styles from './Cart.module.css'
-import { clearCart } from './CartSlice';
+import { clearCart,getTotals } from './CartSlice';
+import { makePayment } from '../../apis/PaymentService';
+
 export default function Cart() {
     const cart = useSelector(state => state.cart);
     const navigate = useNavigate();
@@ -17,7 +19,16 @@ export default function Cart() {
     //xóa giỏ hàng
     const handleClearCart = () => {
       dispatch(clearCart())
-  }
+    }
+
+    //tổng tiền
+    const handleGetTotals = () => {
+        dispatch(getTotals())
+    }
+
+    useEffect(() => {
+        handleGetTotals();
+    }, [cart])
     //get user data for profile, icon, history, . . .
     const [user, setUser] = useState(null);
     function getUserData() {
@@ -33,13 +44,15 @@ export default function Cart() {
         getUserData()
     },[])
   
-
+    
+      
     function checkout(){
         if(user === null){
             toast.error("Bạn cần đăng nhập để thanh toán");
             navigate("/login");
         }else{
-            window.location.href = "/";
+            // window.open(`${makePayment(cart.cartTotalAmount,'Bank')}`);
+           console.log(makePayment(cart.cartTotalAmount,'Bank').data)
         }
     }
 
@@ -59,8 +72,8 @@ export default function Cart() {
                 ): (
                     <div>
                         <div className={styles.titles}>
-                            <h3 className={styles.product_title}>Sản Phẩm</h3>
-                            <h3 className={styles.price}>Giá</h3>
+                            <h3 className={styles.product_title}>Product</h3>
+                            <h3 className={styles.price}>Price</h3>
                         </div>
                         <div>
                             {cart.cartItems?.map(cartItem => {

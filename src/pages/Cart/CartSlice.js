@@ -121,30 +121,25 @@ const cartSlice = createSlice({
             });
             localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
         },
-        // getTotals(state) {
-        //     let { cartTotalQuantity, cartTotalAmount } = state.cartItems.reduce(
-        //         (cartTotal, cartItem) => {
-        //             const { cartQuantity, price } = cartItem;
-        //             const itemTotal = cartQuantity * price;
+        getTotals(state) {
+            let { cartTotalAmount } = state.cartItems.reduce(
+                (cartTotal, cartItem) => {
+                    const {price} = cartItem;
+                    cartTotal.cartTotalAmount += price;
 
-        //             cartTotal.cartTotalQuantity += cartQuantity;
-        //             cartTotal.cartTotalAmount += itemTotal;
-
-        //             return cartTotal;
-        //         },
-        //         {
-        //             cartTotalQuantity: 0,
-        //             cartTotalAmount: 0,
-        //         }
-        //     );
-        //     state.cartTotalQuantity = cartTotalQuantity;
-        //     state.cartTotalAmount = cartTotalAmount;
-        // }
+                    return cartTotal;
+                },
+                {
+                    cartTotalAmount: 0,
+                }
+            );
+            state.cartTotalAmount = cartTotalAmount;
+        }
     
 
 
     }
 });
 
-export const {addToCart, removeFromCart,clearCart} = cartSlice.actions;
+export const {addToCart, removeFromCart,clearCart,getTotals} = cartSlice.actions;
 export default cartSlice.reducer;
