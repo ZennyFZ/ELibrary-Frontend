@@ -15,76 +15,85 @@ import PDFViewer from "../pages/EBookViewer/PDFViewer";
 import { AdminLayout } from "../layout/AdminLayout";
 import isLogin from "../utils/isLogin";
 import isAdmin from "../utils/isAdmin";
+import OrderDetails from "../pages/UserPage/OrderDetails";
 
 export default createBrowserRouter([
-    {
+  {
+    path: "/",
+    element: <UserLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        title: "Home",
         path: "/",
-        element: <UserLayout />,
+        element: <Home />
+      },
+      {
+        title: "Login",
+        path: "/login",
+        element: <Login />
+      },
+      {
+        title: "Register",
+        path: "/register",
+        element: <Register />
+      },
+      {
+        title: "User Page",
+        path: "/user/*",
+        element: (await isLogin()) ? <UserPage /> : <Navigate to="/login" replace />,
         errorElement: <Error />,
         children: [
-            {
-                title: "Home",
-                path: "/",
-                element: <Home />,
-            },
-            {
-                title: "Login",
-                path: "/login",
-                element: <Login />,
-            },
-            {
-                title: "Register",
-                path: "/register",
-                element: <Register />,
-            },
-            {
-                title: "User Page",
-                path: "/user/*",
-                element: await isLogin()? <UserPage /> : <Navigate to="/login" replace />,
-            },
-            //temp path for testing
-            {
-                title: "PDF Viewer",
-                path: "/pdf",
-                element: <PDFViewer />,
-            },
-            {
-                title: "Contact",
-                path: "/contact",
-                element: <HeaderContact />,
-            },
-            {
-                title: "About",
-                path: "/about",
-                element: <HeaderAbout />,
-            },
-            {
-                title: "Book",
-                path: "/book/:id",
-                element: <BookItem />,
-            },
-            {
-                title: "Cart",
-                path: "/cart",
-                element: <Cart />,
-            },
-        ],  
-    },
-    {
-        path: "/admin",
-        element: await isAdmin()? <AdminLayout /> : <Navigate to="/login" replace />,
-        errorElement: <Error />,
-        children: [
-            {
-                title: "ManageBook",
-                path: "/admin/manageBook",
-                element: <ManageBook />,
-            },
-            {
-                title: "ManageCategory",
-                path: "/admin/manageCategory",
-                element: <ManageCategory />,
-            },
-        ],
-    },
+          {
+            title: "Order Details",
+            path: "order/:id",
+            element: <OrderDetails />
+          }
+        ]
+      },
+      //temp path for testing
+      {
+        title: "PDF Viewer",
+        path: "/pdf",
+        element: <PDFViewer />
+      },
+      {
+        title: "Contact",
+        path: "/contact",
+        element: <HeaderContact />
+      },
+      {
+        title: "About",
+        path: "/about",
+        element: <HeaderAbout />
+      },
+      {
+        title: "Book",
+        path: "/book/:id",
+        element: <BookItem />
+      },
+      {
+        title: "Cart",
+        path: "/cart",
+        element: <Cart />
+      }
+    ]
+  },
+  {
+    path: "/admin",
+    element: (await isAdmin()) ? <AdminLayout /> : <Navigate to="/login" replace />,
+    errorElement: <Error />,
+    children: [
+      {
+        title: "ManageBook",
+        path: "/admin/manageBook",
+        element: <ManageBook />
+      },
+      {
+        title: "ManageCategory",
+        path: "/admin/manageCategory",
+        element: <ManageCategory />
+      }
+    ]
+  }
 ]);

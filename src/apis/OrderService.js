@@ -10,7 +10,8 @@ const getAllOrders = () => {
 }
 
 const getOrderByUserId = (userId) => {
-    return axios.post(`${ORDER_API_URL}/get-order/${userId}`, { userId }, { withCredentials: true });
+    console.log(userId);
+    return axios.get(`${ORDER_API_URL}/get-order/${userId}`, { withCredentials: true });
 }
 
 const getOrderDetail = (orderId) => {
