@@ -1,0 +1,7 @@
+.Checkout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://wallpaper.dog/large/20364183.jpg");
+    height: 100vh;
+}
