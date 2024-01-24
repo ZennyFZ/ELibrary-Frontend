@@ -1,31 +1,46 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TableContainer from "@mui/material/TableContainer";
 import Paper from "@mui/material/Paper";
+import { getCurrentUser } from "../../apis/UserService";
+import { useState } from "react";
 
 const UserProfile = () => {
+  const [user, setUser] = useState(null);
+  const formatDate = user?.dob?.split("T")[0]; //format date
+  function getUserData() {
+    getCurrentUser()
+      .then(res => {
+        setUser(res.data.user);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+  useEffect(() => {
+    getUserData();
+  }, []);
   return (
-    <TableContainer component={Paper} style={{ width: "1000px" }}>
-      <div className="user-profile" style={{ marginLeft: "30px" }}>
-        <div className="profile-header">
-          <img src="user-avatar.jpg" alt="User Avatar" className="avatar" />
-          <h3 className="username">Tài Smile</h3>
+    <div>
+      <TableContainer component={Paper} style={{ width: "800px", padding: "5%" }}>
+        <h1>Profile</h1>
+        <div style={{ display: "flex" }}>
+          <div>
+            <img
+              src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"
+              alt="avatar"
+              style={{ width: "200px", height: "200px" }}
+            />
+          </div>
+
+          <div style={{ marginLeft: "10%" }}>
+            <h3>Name: {user?.name}</h3>
+            <h3>Email: {user?.email}</h3>
+            <h3>Phone: {user?.phone}</h3>
+            <h3>Day of birth: {formatDate}</h3>
+          </div>
         </div>
-        <div className="profile-details">
-          <div className="detail">
-            <h3>Phone</h3>
-            <p>0901425613</p>
-          </div>
-          <div className="detail">
-            <h3>Email</h3>
-            <p>taismile@gmail.com</p>
-          </div>
-          <div className="detail">
-            <h3>Address</h3>
-            <p>Nhà văn hóa sinh viên FPT</p>
-          </div>
-        </div>
-      </div>
-    </TableContainer>
+      </TableContainer>
+    </div>
   );
 };
 
