@@ -15,8 +15,8 @@ import PDFViewer from "../pages/EBookViewer/PDFViewer";
 import { AdminLayout } from "../layout/AdminLayout";
 import isLogin from "../utils/isLogin";
 import isAdmin from "../utils/isAdmin";
+import CheckoutPage from "../pages/Cart/CheckoutPage";
 import OrderDetails from "../pages/UserPage/OrderDetails";
-
 export default createBrowserRouter([
   {
     path: "/",
@@ -73,7 +73,12 @@ export default createBrowserRouter([
         title: "Cart",
         path: "/cart",
         element: <Cart />
-      }
+      },
+      {
+        title: "Checkout",
+        path: "/checkout",
+        element: <CheckoutPage />,
+      },
     ]
   },
   {
