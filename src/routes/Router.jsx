@@ -16,80 +16,86 @@ import { AdminLayout } from "../layout/AdminLayout";
 import isLogin from "../utils/isLogin";
 import isAdmin from "../utils/isAdmin";
 import CheckoutPage from "../pages/Cart/CheckoutPage";
+import OrderDetails from "../pages/UserPage/OrderDetails";
 export default createBrowserRouter([
-    {
+  {
+    path: "/",
+    element: <UserLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        title: "Home",
         path: "/",
-        element: <UserLayout />,
-        errorElement: <Error />,
-        children: [
-            {
-                title: "Home",
-                path: "/",
-                element: <Home />,
-            },
-            {
-                title: "Login",
-                path: "/login",
-                element: <Login />,
-            },
-            {
-                title: "Register",
-                path: "/register",
-                element: <Register />,
-            },
-            {
-                title: "User Page",
-                path: "/user/*",
-                element: await isLogin()? <UserPage /> : <Navigate to="/login" replace />,
-            },
-            //temp path for testing
-            {
-                title: "PDF Viewer",
-                path: "/pdf",
-                element: <PDFViewer />,
-            },
-            {
-                title: "Contact",
-                path: "/contact",
-                element: <HeaderContact />,
-            },
-            {
-                title: "About",
-                path: "/about",
-                element: <HeaderAbout />,
-            },
-            {
-                title: "Book",
-                path: "/book/:id",
-                element: <BookItem />,
-            },
-            {
-                title: "Cart",
-                path: "/cart",
-                element: <Cart />,
-            },
-            {
-                title: "Checkout",
-                path: "/checkout",
-                element: <CheckoutPage />,
-            },
-        ],  
-    },
-    {
-        path: "/admin",
-        element: await isAdmin()? <AdminLayout /> : <Navigate to="/login" replace />,
-        errorElement: <Error />,
-        children: [
-            {
-                title: "ManageBook",
-                path: "/admin/manageBook",
-                element: <ManageBook />,
-            },
-            {
-                title: "ManageCategory",
-                path: "/admin/manageCategory",
-                element: <ManageCategory />,
-            },
-        ],
-    },
+        element: <Home />
+      },
+      {
+        title: "Login",
+        path: "/login",
+        element: <Login />
+      },
+      {
+        title: "Register",
+        path: "/register",
+        element: <Register />
+      },
+      {
+        title: "User Page",
+        path: "/user/*",
+        element: (await isLogin()) ? <UserPage /> : <Navigate to="/login" replace />,
+      },
+      {
+        title: "Order Detail",
+        path: "/order/:id",
+        element: (await isLogin()) ? <OrderDetails /> : <Navigate to="/login" replace />,
+      },
+      //temp path for testing
+      {
+        title: "PDF Viewer",
+        path: "/pdf",
+        element: <PDFViewer />
+      },
+      {
+        title: "Contact",
+        path: "/contact",
+        element: <HeaderContact />
+      },
+      {
+        title: "About",
+        path: "/about",
+        element: <HeaderAbout />
+      },
+      {
+        title: "Book",
+        path: "/book/:id",
+        element: <BookItem />
+      },
+      {
+        title: "Cart",
+        path: "/cart",
+        element: <Cart />
+      },
+      {
+        title: "Checkout",
+        path: "/checkout",
+        element: <CheckoutPage />,
+      },
+    ]
+  },
+  {
+    path: "/admin",
+    element: (await isAdmin()) ? <AdminLayout /> : <Navigate to="/login" replace />,
+    errorElement: <Error />,
+    children: [
+      {
+        title: "ManageBook",
+        path: "/admin/manageBook",
+        element: <ManageBook />
+      },
+      {
+        title: "ManageCategory",
+        path: "/admin/manageCategory",
+        element: <ManageCategory />
+      }
+    ]
+  }
 ]);
