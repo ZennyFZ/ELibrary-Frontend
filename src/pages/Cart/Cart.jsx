@@ -1,16 +1,16 @@
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from "react-router-dom"
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import Button from "@mui/material/Button";
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from "react-toastify";
 import { getCurrentUser } from '../../apis/UserService';
 import * as React from "react";
 import { useNavigate } from 'react-router-dom';
 import styles from './Cart.module.css'
-import { clearCart,getTotals } from './CartSlice';
+import { clearCart, getTotals } from './CartSlice';
 import { makePayment } from '../../apis/PaymentService';
-
+import { Container } from '@mui/material';
 export default function Cart() {
     const cart = useSelector(state => state.cart);
     const navigate = useNavigate();
@@ -18,7 +18,7 @@ export default function Cart() {
 
     //xóa giỏ hàng
     const handleClearCart = () => {
-      dispatch(clearCart())
+        dispatch(clearCart())
     }
 
     //tổng tiền
@@ -29,33 +29,34 @@ export default function Cart() {
     useEffect(() => {
         handleGetTotals();
     }, [cart])
+
     //get user data for profile, icon, history, . . .
     const [user, setUser] = useState(null);
     function getUserData() {
         getCurrentUser().then(res => {
-          setUser(res.data.user);
-          console.log(res.data.user)
+            setUser(res.data.user);
+            console.log(res.data.user)
         }).catch(err => {
-          console.log(err);
+            console.log(err);
         })
-      }
+    }
 
-      useEffect(()=>{
+    useEffect(() => {
         getUserData()
-    },[])
-  
-    
-      
-    function checkout(){
-        if(user === null){
+    }, [])
+
+
+    //phần thanh toán
+    function checkout() {
+        if (user === null) {
             toast.error("Bạn cần đăng nhập để thanh toán");
             navigate("/login");
-        }else{
-           makePayment(cart.cartTotalAmount,'Bank').then(res => {
-            window.open(`${res.data.vnpUrl}`);
-          }).catch(err => {
-            console.log(err);
-          })
+        } else {
+            makePayment(cart.cartTotalAmount, 'Bank').then(res => {
+                window.open(`${res.data.vnpUrl}`, "_self");
+            }).catch(err => {
+                console.log(err);
+            })
         }
     }
 
@@ -63,16 +64,21 @@ export default function Cart() {
         <div>
             <div className={styles.cart_container}>
                 <h2>Cart</h2>
-                { cart?.cartItems.length === 0 ? (
-                    <div className={styles.cart_empty}>
-                        <p>Không có sản phẩm nào trong giỏ hàng của bạn.</p>
-                        <div className={styles.start_shopping}>
-                            <Link to="/">
-                                <Button><KeyboardBackspaceIcon />Tiếp tục mua hàng</Button>
-                            </Link>
-                        </div>
+                {cart?.cartItems.length === 0 ? (
+                    <div className={styles.cart_empty_container}>
+                        <Container maxWidth="sm">
+                            <div className={styles.cart_empty}>
+                                <p>Không có sản phẩm nào trong giỏ hàng của bạn.</p>
+                                <div className={styles.start_shopping}>
+                                    <Link to="/">
+                                        <Button><KeyboardBackspaceIcon />Tiếp tục mua hàng</Button>
+                                    </Link>
+                                </div>
+                            </div>
+
+                        </Container>
                     </div>
-                ): (
+                ) : (
                     <div>
                         <div className={styles.titles}>
                             <h3 className={styles.product_title}>Product</h3>
@@ -88,20 +94,20 @@ export default function Cart() {
                                                 <h3>{cartItem.title}</h3>
                                             </div>
                                         </div>
-                                        <div>{(cartItem.price)?.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</div>
+                                        <div>{(cartItem.price)?.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</div>
                                     </div>
-                                    
+
                                 )
                             })}
                         </div>
                         <div className={styles.cart_summary}>
-                        <Button onClick={() => handleClearCart()}>Xóa Giỏ Hàng</Button>
-                            <div className={styles.cart_checkout}>          
+                            <Button onClick={() => handleClearCart()}>Xóa Giỏ Hàng</Button>
+                            <div className={styles.cart_checkout}>
                                 <Button onClick={() => checkout()}>Mua Hàng</Button>
                                 <div className={styles.continue_shopping}>
-                                        <Link to="/">
-                                            <Button><KeyboardBackspaceIcon />Tiếp tục mua hàng</Button>
-                                        </Link>
+                                    <Link to="/">
+                                        <Button><KeyboardBackspaceIcon />Tiếp tục mua hàng</Button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
