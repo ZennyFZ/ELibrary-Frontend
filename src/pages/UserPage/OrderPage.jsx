@@ -55,7 +55,7 @@ export default function OrderPage() {
                     <TableCell align="right">{data.totalPrice}</TableCell>
                     <TableCell align="right">{data.paymentMethod}</TableCell>
                     <TableCell align="right">
-                      <Link to={`order/${data._id}`}>
+                      <Link to={`/order/${data._id}`}>
                         <Button variant="contained" color="primary">
                           View Detail
                         </Button>
