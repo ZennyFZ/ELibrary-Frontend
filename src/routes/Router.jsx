@@ -42,14 +42,11 @@ export default createBrowserRouter([
         title: "User Page",
         path: "/user/*",
         element: (await isLogin()) ? <UserPage /> : <Navigate to="/login" replace />,
-        errorElement: <Error />,
-        children: [
-          {
-            title: "Order Details",
-            path: "order/:id",
-            element: <OrderDetails />
-          }
-        ]
+      },
+      {
+        title: "Order Detail",
+        path: "/order/:id",
+        element: (await isLogin()) ? <OrderDetails /> : <Navigate to="/login" replace />,
       },
       //temp path for testing
       {
