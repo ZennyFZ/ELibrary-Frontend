@@ -33,13 +33,13 @@ function TabPanel(props) {
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired
 };
 
 function a11yProps(index) {
   return {
     id: `vertical-tab-${index}`,
-    "aria-controls": `vertical-tabpanel-${index}`,
+    "aria-controls": `vertical-tabpanel-${index}`
   };
 }
 
@@ -57,7 +57,7 @@ export default function UserPage() {
         bgcolor: "background.paper",
         display: "flex",
         height: "80%",
-        margin: "5%",
+        margin: "5%"
       }}
     >
       <Tabs
