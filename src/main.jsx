@@ -15,6 +15,7 @@ i18next.init({
     vn: {
       global: vnLang.global,
       AboutPage: vnLang.AboutPage,
+      BooksPage: vnLang.BooksPage,
     },
   },
   lng: "en",
