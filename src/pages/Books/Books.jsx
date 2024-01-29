@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { getCategories } from "../../apis/CategoryService";
 import {
   Button,
   Card,
@@ -17,13 +16,12 @@ import {
   Select,
   TextField
 } from "@mui/material";
-import { getBooks } from "../../apis/BookService";
+import { getBooks, getCategories } from "../../apis/BookService";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../Cart/CartSlice";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+
 export default function Books() {
   const { t } = useTranslation("BooksPage");
   const [categories, setCategories] = useState([]);
@@ -101,7 +99,7 @@ export default function Books() {
     getCategories()
       .then(result => {
         if (result.status === 200) {
-          setCategories(result.data.categories);
+          setCategories(result.data.categoryList);
         }
       })
       .catch(err => {
