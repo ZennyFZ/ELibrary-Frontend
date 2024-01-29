@@ -18,6 +18,8 @@ import isAdmin from "../utils/isAdmin";
 import CheckoutPage from "../pages/Cart/CheckoutPage";
 import OrderDetails from "../pages/UserPage/OrderDetails";
 import BookTrading from "../pages/BookTrading/BookTrading";
+import Books from "../pages/Books/Books";
+
 export default createBrowserRouter([
   {
     path: "/",
@@ -69,6 +71,11 @@ export default createBrowserRouter([
         title: "About",
         path: "/about",
         element: <HeaderAbout />
+      },
+      {
+        title: "Books",
+        path: "/books",
+        element: <Books />
       },
       {
         title: "Book",

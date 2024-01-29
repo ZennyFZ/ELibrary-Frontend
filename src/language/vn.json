@@ -2,7 +2,31 @@
   "global": {
     "Home": "Trang chủ",
     "Books": "Sách",
-    "About": "Về chúng tôi"
+    "About": "Về chúng tôi",
+    "Cart": "Giỏ hàng",
+    "Account info": "Thông tin tài khoản",
+    "Manage": "Quản lý",
+    "Logout": "Đăng xuất",
+    "Login": "Đăng nhập",
+    "My books": "Kho sách"
   },
-  "AboutPage": {}
+  "AboutPage": {},
+  "BooksPage": {
+    "Category": "Thể loại",
+    "Language": "Ngôn ngữ",
+    "English": "Tiếng Anh",
+    "Vietnamese": "Tiếng Việt",
+    "Sort by": "Sắp xếp theo",
+    "A to Z": "A đến Z",
+    "Z to A": "Z đến A",
+    "Latest": "Mới nhất",
+    "Search": "Tìm kiếm",
+    "Detail": "Chi tiết",
+    "Add to card": "Thêm vào giỏ",
+    "None": "Không có",
+    "Price low to high": "Giá từ thấp đến cao",
+    "Price high to low": "Giá từ cao đến thấp",
+    "": "",
+    "": ""
+  }
 }
