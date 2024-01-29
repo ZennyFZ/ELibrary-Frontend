@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Button, Avatar, Tooltip, IconButton, Typography, MenuItem, Menu, Icon} from "@mui/material";
+import { AppBar, Toolbar, Button, Avatar, Tooltip, IconButton, Typography, MenuItem, Menu, Icon } from "@mui/material";
 import { Link } from "react-router-dom";
 import { getCurrentUser } from "../../apis/UserService";
 import { useState } from "react";
@@ -34,6 +34,10 @@ const Header = () => {
             section: t("Books"),
             link: "/books",
         },
+      {
+      section: "Book Trade",
+      link: "/booktrading"
+    },
         {
             section: t("About"),
             link: "/about",
@@ -44,17 +48,30 @@ const Header = () => {
       },
     ];
 
+  //get user data for profile, icon, history, . . .
+  const [user, setUser] = useState(null);
+  function getUserData() {
+    getCurrentUser()
+      .then(res => {
+        setUser(res.data.user);
+        console.log(res.data.user);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 
-    //get user data for profile, icon, history, . . .
-    const [user, setUser] = useState(null);
-    function getUserData() {
-        getCurrentUser().then(res => {
-          setUser(res.data.user);
-          console.log(res.data.user)
-        }).catch(err => {
-          console.log(err);
-        })
-      }
+  useEffect(() => {
+    getUserData();
+  }, []);
+  //show profile
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const handleOpenUserMenu = event => {
+    setAnchorElUser(event.currentTarget);
+  };
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
 
       useEffect(()=>{
         getUserData()
@@ -120,7 +137,7 @@ const Header = () => {
               <div>
               <Tooltip title= {t('Account info')} style={{ textDecoration: "none", color: "black", marginLeft: "2.5rem" }}>
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar src="/broken-image.jpg"/>
+                  <Avatar src="/broken-image.jpg" />
                 </IconButton>
               </Tooltip>
               <Menu
@@ -129,12 +146,12 @@ const Header = () => {
                 anchorEl={anchorElUser}
                 anchorOrigin={{
                   vertical: "top",
-                  horizontal: "right",
+                  horizontal: "right"
                 }}
                 keepMounted
                 transformOrigin={{
                   vertical: "top",
-                  horizontal: "right",
+                  horizontal: "right"
                 }}
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
@@ -148,6 +165,7 @@ const Header = () => {
                 </MenuItem>
 
                 {user?.role === "admin" ? (
+
                 <MenuItem onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">
                     <Link to="/admin" style={{ textDecoration: "none", color: "#000000DE" }}>
@@ -164,10 +182,11 @@ const Header = () => {
                   </Typography>
                 </MenuItem>
                 )}
-                
+
                 <MenuItem>
-                  <Typography textAlign="center" 
-                  // onClick={() => logout()}
+                  <Typography
+                    textAlign="center"
+                    // onClick={() => logout()}
                   >
                     {t('Logout')}
                   </Typography>

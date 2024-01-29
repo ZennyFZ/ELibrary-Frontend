@@ -17,7 +17,9 @@ import isLogin from "../utils/isLogin";
 import isAdmin from "../utils/isAdmin";
 import CheckoutPage from "../pages/Cart/CheckoutPage";
 import OrderDetails from "../pages/UserPage/OrderDetails";
+import BookTrading from "../pages/BookTrading/BookTrading";
 import Books from "../pages/Books/Books";
+
 export default createBrowserRouter([
   {
     path: "/",
@@ -42,18 +44,23 @@ export default createBrowserRouter([
       {
         title: "User Page",
         path: "/user/*",
-        element: (await isLogin()) ? <UserPage /> : <Navigate to="/login" replace />,
+        element: (await isLogin()) ? <UserPage /> : <Navigate to="/login" replace />
       },
       {
         title: "Order Detail",
         path: "/order/:id",
-        element: (await isLogin()) ? <OrderDetails /> : <Navigate to="/login" replace />,
+        element: (await isLogin()) ? <OrderDetails /> : <Navigate to="/login" replace />
       },
       //temp path for testing
       {
         title: "PDF Viewer",
         path: "/pdf",
         element: <PDFViewer />
+      },
+      {
+        title: "Book Trading",
+        path: "/booktrading",
+        element: (await isLogin()) ? <BookTrading /> : <Navigate to="/login" replace />
       },
       {
         title: "Contact",
@@ -83,8 +90,8 @@ export default createBrowserRouter([
       {
         title: "Checkout",
         path: "/checkout",
-        element: <CheckoutPage />,
-      },
+        element: <CheckoutPage />
+      }
     ]
   },
   {
