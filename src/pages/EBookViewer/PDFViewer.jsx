@@ -6,6 +6,7 @@ import "./PDFViewer.scss";
 import { Box, Button, Modal } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import { summarize } from "../../apis/SummarizationService";
+import MarkdownPreview from "@uiw/react-markdown-preview";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdfjs-dist/build/pdf.worker.min.js", import.meta.url).toString();
 
@@ -29,6 +30,7 @@ const style = {
 const PDFViewer = () => {
   const pdf = useLocation().state.Link;
   const bookName = useLocation().state.name;
+  const path = useLocation().pathname;
   const [summarizedBook, setSummarizedBook] = useState();
   const [file, setFile] = useState(pdf || "pdfs/sample.pdf");
   const [numPages, setNumPages] = useState();
@@ -54,10 +56,14 @@ const PDFViewer = () => {
     summerizeBook();
   }, []);
 
+  useEffect(() => {
+    setSummarizedBook("");
+  }, [path]);
+
   return (
     <div className="PDFViewer">
       <header>
-        <h1>PDF Viewer</h1>
+        <h1>{bookName}</h1>
       </header>
       <div className="PDFViewer__container">
         <div className="PDFViewer__container__uploadFile">
@@ -72,7 +78,7 @@ const PDFViewer = () => {
           >
             <Box sx={{ ...style, width: 600 }}>
               <h2 id="parent-modal-title">Summarize</h2>
-              <p>{summarizedBook}</p>
+              <MarkdownPreview style={{ maxHeight: "500px", overflowY: "auto" }} source={summarizedBook} />
             </Box>
           </Modal>
         </div>
