@@ -4,7 +4,7 @@ import { SUMMARIZATION_API_URL } from './APIConfig'
 const summarize = (text) => {
     return axios.post(`${SUMMARIZATION_API_URL}`, {
         text
-    })
+    }, { withCredentials: true })
 }
 
 export { summarize };

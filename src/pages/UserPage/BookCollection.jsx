@@ -5,18 +5,20 @@ import { useEffect, useState } from "react";
 import { getBooks } from "../../apis/BookService";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import { getCurrentUser } from "../../apis/UserService";
 
 function BookCollection() {
   const [books, setBooks] = useState([]);
-  const getAllBooks = () => {
-    getBooks().then((res) => {
-      setBooks(res.data);
+
+  const getBookById = () => {
+    getCurrentUser().then(res => {
+      setBooks(res.data.user.bookList);
+      console.log(res.data.user.bookList);
     });
   };
+
   useEffect(() => {
-    getBooks().then((res) => {
-      setBooks(res.data.bookList);
-    });
+    getBookById();
   }, []);
   const chunkArray = (array, size) => {
     const chunkedArray = [];
@@ -38,7 +40,7 @@ function BookCollection() {
               style={{
                 display: "flex",
                 justifyContent: "center",
-                marginLeft: "115px",
+                marginLeft: "115px"
               }}
             >
               {row.map((book, index) => (
@@ -51,30 +53,26 @@ function BookCollection() {
                     padding: "15px",
                     marginBottom: "50px",
                     backgroundColor: "rgb(248 246 246)",
-                    marginRight: "100px",
+                    marginRight: "100px"
                   }}
                 >
-                  <img
-                    src={book.image}
-                    alt=""
-                    style={{ width: "200px", height: "200px" }}
-                  />
-                  <h3
-                    style={{ borderTop: "1px solid #d5c6c6", height: "70px" }}
-                  >
-                    {book.title}
-                  </h3>
+                  <img src={book.image} alt="" style={{ width: "200px", height: "200px" }} />
+                  <h3 style={{ borderTop: "1px solid #d5c6c6", height: "70px" }}>{book.title}</h3>
                   <div>
                     <Button
                       className="ChooseBook"
                       style={{
                         backgroundColor: "#29943d",
                         marginLeft: "10px",
-                        padding: "7px 10px",
+                        padding: "7px 10px"
                       }}
                     >
                       {" "}
-                      <Link to={"/book/${book._id}"} style={{ color: "white" }}>
+                      <Link
+                        to={`/pdf/${book._id}`}
+                        style={{ color: "white" }}
+                        state={{ Link: `${book.file}`, name: `${book.title}` }}
+                      >
                         View
                       </Link>
                     </Button>
