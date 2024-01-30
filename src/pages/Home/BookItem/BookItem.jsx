@@ -32,7 +32,7 @@ function BookItem() {
             Page : <span>{book?.book?.pages}</span>
           </p>
           <p style={{ fontSize: "22px", fontWeight: "500" }}>
-            Price : <span style={{ color: "#236d23" }}>{book?.book?.price} $</span>
+            Price : <span style={{ color: "#236d23" }}>{book?.book?.price} VND</span>
           </p>
           <button>Add To Cart</button>
         </div>

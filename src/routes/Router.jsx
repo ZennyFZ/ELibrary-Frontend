@@ -54,7 +54,7 @@ export default createBrowserRouter([
       //temp path for testing
       {
         title: "PDF Viewer",
-        path: "/pdf",
+        path: "/pdf/:id",
         element: <PDFViewer />
       },
       {
