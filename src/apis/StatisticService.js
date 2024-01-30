@@ -9,8 +9,8 @@ const getTotalCustomers = () => {
     return axios.get(`${STATISTIC_API_URL}/total-customer`, { withCredentials: true });
 }
 
-const getTotalRevenue = () => {
-    return axios.get(`${STATISTIC_API_URL}/total-revenue`, { withCredentials: true });
+const getTotalRevenue = (year) => {
+    return axios.get(`${STATISTIC_API_URL}/total-revenue/?year=${year}`, { withCredentials: true });
 }
 
 export { getTotalBooksSold, getTotalCustomers, getTotalRevenue }
