@@ -8,3 +8,4 @@ export const PAYMENT_API_URL = `${host}/payment`;
 export const ORDER_API_URL = `${host}/order`;
 export const TRANSLATION_API_URL = `${host}/translate`;
 export const SUMMARIZATION_API_URL = `${host}/summarize`;
+export const STATISTIC_API_URL = `${host}/statistic`;
