@@ -32,11 +32,11 @@ const addBook = (title, author, publisher, publishDate, pages, language, price, 
 }
 
 const uploadBookImage = (formData) => {
-    return axios.post(`${BOOK_API_URL}/upload-book-image`, formData, { headers: {'Content-Type': 'multipart/form-data'} ,withCredentials: true });
+    return axios.post(`${BOOK_API_URL}/upload-book-image`, formData, { withCredentials: true });
 }
 
 const uploadBookFile = (formData) => {
-    return axios.post(`${BOOK_API_URL}/upload-book-file`, formData, { headers: {'Content-Type': 'multipart/form-data'} ,withCredentials: true });
+    return axios.post(`${BOOK_API_URL}/upload-book-file`, formData, {  withCredentials: true });
 }
 
 const updateBook = (id, title, author, publisher, publishDate, pages, language, price, image, description, category, file) => {
