@@ -19,6 +19,7 @@ import CheckoutPage from "../pages/Cart/CheckoutPage";
 import OrderDetails from "../pages/UserPage/OrderDetails";
 import BookTrading from "../pages/BookTrading/BookTrading";
 import Books from "../pages/Books/Books";
+import Upload from "../pages/Upload/Upload";
 
 export default createBrowserRouter([
   {
