@@ -33,7 +33,8 @@ export default function Header() {
   const handleLogout = () => {
     logout()
       .then(res => {
-        navigate("/");
+        // navigate("/");
+        console.log(res.status);
       })
       .catch(err => {
         console.log(err);

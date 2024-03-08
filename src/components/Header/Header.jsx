@@ -29,8 +29,8 @@ const Header = () => {
   const handleLogout = () => {
     logout()
       .then(res => {
-        window.location.href = "/";
-        console.log(res);
+        // window.location.href = "/";
+        console.log(res.status);
       })
       .catch(err => {
         console.log(err);
