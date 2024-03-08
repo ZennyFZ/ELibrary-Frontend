@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import { getCurrentUser } from "../../apis/UserService";
 import { useState } from "react";
 import { useEffect } from "react";
+import { logout } from "../../apis/UserService";
 import { useTranslation } from "react-i18next";
 import VNIcon from "/images/VNFlag.png";
 import USIcon from "/images/USFlag.png";
+
 const Header = () => {
   const { t, i18n } = useTranslation("global");
   const [anchorElLanguage, setAnchorElLanguage] = useState(null);
@@ -24,6 +26,16 @@ const Header = () => {
       localStorage.setItem("language", language);
     }
   };
+  const handleLogout = () => {
+    logout()
+      .then(res => {
+        window.location.href = "/";
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   const headerSection = [
     {
@@ -35,7 +47,7 @@ const Header = () => {
       link: "/books"
     },
     {
-      section: "Book Trade",
+      section: t("Book Trade"),
       link: "/booktrading"
     },
     {
@@ -183,10 +195,7 @@ const Header = () => {
                 )}
 
                 <MenuItem>
-                  <Typography
-                    textAlign="center"
-                    // onClick={() => logout()}
-                  >
+                  <Typography textAlign="center" onClick={() => handleLogout()}>
                     {t("Logout")}
                   </Typography>
                 </MenuItem>
