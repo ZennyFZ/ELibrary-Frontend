@@ -29,13 +29,21 @@ const Header = () => {
   const handleLogout = () => {
     logout()
       .then(res => {
-        // window.location.href = "/";
+        localStorage.removeItem("user");
+        setUser(null);
         console.log(res.status);
       })
       .catch(err => {
         console.log(err);
       });
   };
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      setUser(JSON.parse(user));
+    }
+  }, []);
 
   const headerSection = [
     {
