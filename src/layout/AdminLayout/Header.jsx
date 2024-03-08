@@ -3,11 +3,10 @@ import { Menu, Avatar, MenuItem, IconButton, Badge } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { logout, getCurrentUser } from "../../apis/UserService";
+import { Link } from "react-router-dom";
+import { getCurrentUser } from "../../apis/UserService";
 
 export default function Header() {
-  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const avt = Boolean(anchorEl);
   const [user, setUser] = useState(null);
@@ -30,25 +29,6 @@ export default function Header() {
     getUserData();
   }, []);
 
-  const handleLogout = () => {
-    logout()
-      .then(res => {
-        localStorage.removeItem("user");
-        setUser(null);
-        navigate("/"); // navigate to home after logout
-        console.log(res.status);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (user) {
-      setUser(JSON.parse(user));
-    }
-  }, []);
   return (
     <>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", margin: "30px 40px" }}>
@@ -91,7 +71,6 @@ export default function Header() {
                     Home
                   </Link>
                 </MenuItem>
-                <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Menu>
             </div>
           </div>

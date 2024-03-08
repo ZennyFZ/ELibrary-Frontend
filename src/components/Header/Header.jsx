@@ -38,13 +38,6 @@ const Header = () => {
       });
   };
 
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (user) {
-      setUser(JSON.parse(user));
-    }
-  }, []);
-
   const headerSection = [
     {
       section: t("Home"),
