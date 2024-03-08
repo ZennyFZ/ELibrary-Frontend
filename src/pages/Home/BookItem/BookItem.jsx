@@ -2,11 +2,17 @@ import React, { useEffect, useState } from "react";
 import "./BookItem.scss";
 import { useParams } from "react-router-dom";
 import { getBook } from "../../../apis/BookService";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../Cart/CartSlice";
 
 function BookItem() {
   const { id } = useParams();
   const [book, setBook] = useState({});
   console.log(book);
+  const dispatch = useDispatch();
+  const handleAddToCart = book => {
+    dispatch(addToCart(book));
+  };
   useEffect(() => {
     getBook(id).then(res => {
       setBook(res.data);
@@ -34,7 +40,13 @@ function BookItem() {
           <p style={{ fontSize: "22px", fontWeight: "500" }}>
             Price : <span style={{ color: "#236d23" }}>{book?.book?.price} VND</span>
           </p>
-          <button>Add To Cart</button>
+          <button
+            onClick={() => {
+              handleAddToCart(book?.book);
+            }}
+          >
+            Add To Cart
+          </button>
         </div>
         <div
           className="half-width"
