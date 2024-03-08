@@ -33,13 +33,22 @@ export default function Header() {
   const handleLogout = () => {
     logout()
       .then(res => {
-        // navigate("/");
+        localStorage.removeItem("user");
+        setUser(null);
+        navigate("/"); // navigate to home after logout
         console.log(res.status);
       })
       .catch(err => {
         console.log(err);
       });
   };
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      setUser(JSON.parse(user));
+    }
+  }, []);
   return (
     <>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", margin: "30px 40px" }}>
