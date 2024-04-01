@@ -21,6 +21,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../Cart/CartSlice";
+import { getCurrentUser } from "../../apis/UserService";
 
 export default function Books() {
   const { t } = useTranslation("BooksPage");
@@ -30,6 +31,7 @@ export default function Books() {
   const [filter, setFilter] = useState({ categories: [], language: [] });
   const [searchBooks, setSearchBooks] = useState("");
   const [sortBooks, setSortBooks] = useState("");
+  const [userBooks, setUserBooks] = useState([]);
   const dispatch = useDispatch();
 
   const handleAddToCart = book => {
@@ -114,6 +116,13 @@ export default function Books() {
       })
       .catch(err => {
         console.log(err);
+      });
+    getCurrentUser()
+      .then(res => {
+        if (res.status === 200) setUserBooks(res.data.user.bookList);
+      })
+      .catch(err => {
+        return;
       });
   }, []);
   return (
@@ -218,18 +227,33 @@ export default function Books() {
                         </CardContent>
                       </CardActionArea>
                       <CardActions className="justify-between">
-                        <Link to={`/book/${data._id}`}>
-                          <Button size="small">{t("Detail")}</Button>
-                        </Link>
-                        <Button
-                          size="small"
-                          color="primary"
-                          onClick={() => {
-                            handleAddToCart(data);
-                          }}
-                        >
-                          {t("Add to card")}
-                        </Button>
+                        {userBooks.some(obj => obj._id === data._id) ? (
+                          <Link
+                            className="m-auto"
+                            to={`/pdf/${data._id}`}
+                            style={{ color: "white" }}
+                            state={{ Link: `${data.file}`, name: `${data.title}` }}
+                          >
+                            <Button size="small" style={{ color: "#65b726" }}>
+                              Read book
+                            </Button>
+                          </Link>
+                        ) : (
+                          <>
+                            <Link to={`/book/${data._id}`}>
+                              <Button size="small">{t("Detail")}</Button>
+                            </Link>
+                            <Button
+                              size="small"
+                              color="primary"
+                              onClick={() => {
+                                handleAddToCart(data);
+                              }}
+                            >
+                              {t("Add to card")}
+                            </Button>
+                          </>
+                        )}
                       </CardActions>
                     </Card>
                   );

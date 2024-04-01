@@ -38,7 +38,7 @@ function BookItem() {
             Page : <span>{book?.book?.pages}</span>
           </p>
           <p style={{ fontSize: "22px", fontWeight: "500" }}>
-            Price : <span style={{ color: "#236d23" }}>{book?.book?.price} VND</span>
+            Price : <span style={{ color: "#236d23" }}>{book?.book?.price?.toLocaleString("vi-VN")} VND</span>
           </p>
           <button
             onClick={() => {
