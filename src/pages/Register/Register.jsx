@@ -6,6 +6,8 @@ import Divider from '@mui/material/Divider';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Link } from 'react-router-dom';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { register } from '../../apis/UserService';
+import { toast } from 'react-toastify';
 const Register = () => {
     //usestste
     const [formError , setFormError] = useState({
@@ -52,6 +54,13 @@ const Register = () => {
             setFormError({
                 ...inputError,
                 cfpassword:""
+            });
+            register(e.target.email.value, e.target.password.value)
+            .then(res => {
+              toast.success("Category already successfully!");
+            })
+            .catch(err => {
+              toast.error(err.response.data.message);
             });
             return;
         }
