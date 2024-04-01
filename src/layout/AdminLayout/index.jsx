@@ -6,10 +6,12 @@ import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 import { Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Header from "./Header";
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 
 const menu = [
+  { name: "Orders", url: "ordersDetail", icon: <ShoppingBagIcon /> },
   { name: "Book", url: "manageBook", icon: <AutoStoriesIcon /> },
-  { name: "Category", url: "manageCategory", icon: <CategoryIcon /> },
+  { name: "Category", url: "manageCategory", icon: <CategoryIcon /> }
 ];
 
 export function AdminLayout() {
@@ -37,14 +39,14 @@ export function AdminLayout() {
                   sx={{
                     minHeight: 48,
                     justifyContent: "initial",
-                    px: 2.5,
+                    px: 2.5
                   }}
                 >
                   <ListItemIcon
                     sx={{
                       minWidth: 0,
                       mr: 3,
-                      justifyContent: "center",
+                      justifyContent: "center"
                     }}
                   >
                     {item.icon}

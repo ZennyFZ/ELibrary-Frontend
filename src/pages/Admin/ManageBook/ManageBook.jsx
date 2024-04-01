@@ -148,7 +148,7 @@ export default function ManageBook() {
 
   return (
     <>
-      <div style={{ color: "#4A85F6", fontSize: "24px", fontWeight: "700", margin: "0 0 15px 20px" }}>BOOKS</div>
+      <div style={{ color: "#4A85F6", fontSize: "24px", fontWeight: "700", margin: "0 0 15px 20px" }}>Books</div>
       <div style={{ display: "flex", alignItems: "center" }}>
         <TextField
           onChange={e => {

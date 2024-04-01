@@ -19,6 +19,7 @@ import CheckoutPage from "../pages/Cart/CheckoutPage";
 import OrderDetails from "../pages/UserPage/OrderDetails";
 import BookTrading from "../pages/BookTrading/BookTrading";
 import Books from "../pages/Books/Books";
+import OrdersDetail from "../pages/Admin/OrdersDetail/OrdersDetail";
 
 export default createBrowserRouter([
   {
@@ -100,13 +101,18 @@ export default createBrowserRouter([
     errorElement: <Error />,
     children: [
       {
+        title: "OrdersDetail",
+        path: "ordersDetail",
+        element: <OrdersDetail />
+      },
+      {
         title: "ManageBook",
-        path: "/admin/manageBook",
+        path: "manageBook",
         element: <ManageBook />
       },
       {
         title: "ManageCategory",
-        path: "/admin/manageCategory",
+        path: "manageCategory",
         element: <ManageCategory />
       }
     ]
