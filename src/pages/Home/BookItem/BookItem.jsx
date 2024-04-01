@@ -56,7 +56,7 @@ function BookItem() {
             style={{
               marginTop: "20px",
               paddingLeft: "37px",
-              width: "9 0%",
+              width: "90%",
               height: "90%",
               marginLeft: "45px",
               borderRadius: "110px"
