@@ -61,7 +61,8 @@ function HomeBookRecent() {
                 }}
               >
                 <img src={book.image} alt="" style={{ width: "200px", height: "200px" }} />
-                <h3 style={{ borderTop: "1px solid #d5c6c6", height: "70px" }}>{book.title}</h3>
+                <h3 style={{ borderTop: "1px solid #d5c6c6", height: "40px" }}>{book.title}</h3>
+                <div className="font-bold pb-2">{book.price.toLocaleString("vi-VN")} VNĐ</div>
                 <div>
                   {userBooks.some(obj => obj._id === book._id) ? (
                     <Link
